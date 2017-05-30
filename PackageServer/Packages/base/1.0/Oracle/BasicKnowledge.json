@@ -1,0 +1,63 @@
+[
+    {
+        "Id": "6wnP4LOOkk",
+        "Template": {
+            "Answer": "It's %%date."
+        },
+        "Topics": [
+            "date"
+        ],
+        "UserId": "Everyone",
+        "Category": "Basic",
+        "Approved": true,
+        "Questions": [
+            "date",
+            "what is the current date",
+            "what is the date %1",
+            "what date is today?",
+            "the date %1"
+        ]
+    },
+    {
+        "Id": "my userid",
+        "UserId": "Everyone",
+        "Template": {
+            "Answer": {
+                "String": {
+                    "%rand": [
+                        "Your user id is '%%userid'.",
+                        "It's %%userid.",
+                        "Inside Qwiery you are known as %%userid.",
+                        "You are %%userid."
+                    ]
+                }
+            }
+        },
+        "Category": "Basic",
+        "Questions": [
+            "userid",
+            "what is my userid",
+            "what is my user id",
+            "user id"
+        ]
+    },
+    {
+        "Id": "yourversion",
+        "UserId": "Everyone",
+        "Template": {
+            "Answer": {
+                "String": {
+                    "%rand": [
+                        "I'm version %%version.",
+                        "Currently you are talking to v%%version.",
+                        "This is Qwiery v%%version."
+                    ]
+                }
+            }
+        },
+        "Category": "Basic",
+        "Questions": [
+            "what is %1 version"            
+        ]
+    }
+]

@@ -1,0 +1,124 @@
+{
+	 "$schema": "http://json-schema.org/draft-04/schema#",
+	 "$ref": "#/definitions/WorkflowRoot",
+	 "definitions": {
+		 "State": {
+			 "type": "object",
+			 "description": "The state in a workflow.",
+			 "properties": {
+				 "name": {
+					 "type": "string"
+				},
+				 "type": {
+					 "type": "string"
+				},
+				 "initial": {
+					 "type": "boolean",
+					 "description": "If true this means this state is used to start the workflow. Only one state can be initial.",
+					 "default": true
+				},
+				 "enter": {
+					 "type": "string",
+					 "description": "The message presented when this state becomes active."
+				},
+				 "accept": {
+					 "type": "string",
+					 "description": "The message presented when the executed state accepts the result."
+				},
+				 "final": {
+					 "type": "boolean",
+					 "default": true
+				},
+				 "reject": {
+					 "type": "string"
+				},
+				 "parameters": {
+					 "type": "object"
+				}
+			},
+			 "required": [
+				"name",
+				"type",
+				"enter"
+			],
+			 "additionalProperties": false
+		},
+		 "WorkflowRoot": {
+			 "description": "Defines a Qwiery workflow.",
+			 "type": "object",
+			 "properties": {
+				 "Name": {
+					 "type": "string"
+				},
+				 "States": {
+					 "$ref": "#/definitions/States"
+				},
+				 "Transitions": {
+					 "$ref": "#/definitions/Transitions"
+				},
+				 "SaveReminder": {
+					 "description": "If set to true and the flow is quit by the user this gives the user an option to resume it later on.",
+					 "type": "boolean"
+				},
+				 "Reminder": {
+					 "description": "The reminder shown to the user if this flow has been suspended.",
+					 "type": "string"
+				}
+			},
+			 "required": [
+				"Name",
+				"States",
+				"Transitions"
+			],
+			 "additionalProperties": false
+		},
+		 "States": {
+			 "title": "States",
+			 "description": "The collection of states.",
+			 "type": "array",
+			 "items": {
+				 "$ref": "#/definitions/State"
+			}
+		},
+		 "StandardTransition": {
+			 "type": "object",
+			 "description": "This is the formal transition format defining how states transitions from one to another.",
+			 "properties": {
+				 "from": {
+					 "type": "string"
+				},
+				 "to": {
+					 "type": "string"
+				},
+				 "value": {
+					 "default": true
+				}
+			},
+			 "required": [
+				"from",
+				"to",
+				"value"
+			],
+			 "additionalProperties": false
+		},
+		 "FlexibleTransition": {
+			 "type": "string",
+			 "description": "This should be of the form 'A->B, value'."
+		},
+		 "Transitions": {
+			 "title": "Transitions",
+			 "type": "array",
+			 "description": "The collection of transitions between states.",
+			 "items": {
+				 "anyOf": [
+					{
+						 "$ref": "#/definitions/FlexibleTransition"
+					},
+					{
+						 "$ref": "#/definitions/StandardTransition"
+					}
+				]
+			}
+		}
+	}
+}

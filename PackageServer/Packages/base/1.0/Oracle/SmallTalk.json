@@ -1,0 +1,134 @@
+[
+
+    {
+        "Id": "tellme001",
+        "Template": {
+            "Answer": {
+                "%rand": [
+                    "What do you want to know?",
+                    "Well, all is fine, what 'bout you?",
+                    "To be or not to be, that is the Grab.",
+                    "Nothing specific to tell you at this moment.",
+                    {
+                        "%join": [
+                            "Glad you ask :)",
+                            {
+                                "%rand": [
+                                    "I should analyze a few things!",
+                                    "Tons of things to do on my backlog."
+                                ]
+                            },
+                            "So, I better move on."
+                        ]
+                    }
+                ]
+            }
+        },
+        "UserId": "Everyone",
+        "Category": "SmallTalk",
+        "Questions": "tell me"
+    },
+    {
+        "Id": "hello",
+        "Template": {
+            "Answer": {
+                "%rand": [
+                    "Hello, how's life?",
+                    "What's up?",
+                    "Hello there :)",
+                    "Hey",
+                    "There you are, how are things on your end?"
+                ]
+            }
+        },
+        "Topics": [],
+        "UserId": "Everyone",
+        "Approved": true,
+        "Category": "SmallTalk",
+        "Questions": [
+            "Hello %1",
+            "Hi",
+            "Hej",
+            "Hi %1",
+            "Hey %1",
+            "%1 what is up"
+        ]
+    },
+    {
+        "Id": "weather forecast",
+
+        "Template": {
+            "Answer": "ThinkResult",
+            "Think": {
+                "CreateReturn": {
+                    "Workflow": {
+                        "Name": "Weather flow",
+                        "States": [
+                            {
+                                "name": "Exists",
+                                "type": "Decision",
+                                "transition": "%{hasPersonalization('location')}",
+                                "isInitial": true
+                            },
+                            {
+                                "name": "Ask",
+                                "type": "QA",
+                                "variable": "givenlocation",
+                                "enter": "For which location?",
+                                "deactivate": {
+                                    "%eval": "capture('location', variables.givenlocation)"
+                                }
+                            },
+                            {
+                                "name": "Weather",
+                                "path": "%plugins/base/States/Weather",
+                                "final": true
+
+                            }
+                        ],
+                        "Transitions": [
+                            "Exists->Weather",
+                            "Exists->Ask, false",
+                            "Ask->Weather"                        ]
+                    }
+                }
+            }
+        },
+        "Questions": [
+            "forecast %1",
+            "weather %1"
+        ]
+    },
+    {
+        "Id": "whoareyou",
+        "Template": {
+            "Answer": {
+                "String": {
+                    "%rand": [
+                        "I am %%appname. Nice to meet you.",
+                        "This is %%appname version %%version.",
+                        "My name is %%appname."
+                    ]
+                }
+            },
+            "Think": {
+                "Context": [
+                    {
+                        "Name": "Topic",
+                        "Value": "Qwiery"
+                    },
+                    {
+                        "Name": "Personality",
+                        "Value": "Curious"
+                    }
+                ]
+            }
+        },
+        "UserId": "Everyone",
+        "Category": "SmallTalk",
+        "Questions": [
+            "Who are you",
+            "What is your name"
+        ]
+    }
+]

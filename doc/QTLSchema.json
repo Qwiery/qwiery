@@ -1,0 +1,340 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "$ref": "#/definitions/QTL",
+  "definitions": {
+    "State": {
+      "description": "The state in a workflow.",
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        },
+        "initial": {
+          "description": "If true this means this state is used to start the workflow. Only one state can be initial.",
+          "type": "boolean",
+          "default": true
+        },
+        "enter": {
+          "description": "The message presented when this state becomes active.",
+          "type": "string"
+        },
+        "accept": {
+          "description": "The message presented when the executed state accepts the result.",
+          "type": "string"
+        },
+        "final": {
+          "type": "boolean",
+          "default": true
+        },
+        "reject": {
+          "type": "string"
+        },
+        "parameters": {
+          "type": "object"
+        }
+      },
+      "required": [
+        "name",
+        "type",
+        "enter"
+      ],
+      "additionalProperties": false
+    },
+    "WorkflowRoot": {
+      "description": "Defines a Qwiery workflow.",
+      "type": "object",
+      "properties": {
+        "Name": {
+          "type": "string"
+        },
+        "States": {
+          "$ref": "#/definitions/States"
+        },
+        "Transitions": {
+          "$ref": "#/definitions/Transitions"
+        },
+        "SaveReminder": {
+          "description": "If set to true and the flow is quit by the user this gives the user an option to resume it later on.",
+          "type": "boolean"
+        },
+        "Reminder": {
+          "description": "The reminder shown to the user if this flow has been suspended.",
+          "type": "string"
+        }
+      },
+      "required": [
+        "Name",
+        "States",
+        "Transitions"
+      ],
+      "additionalProperties": false
+    },
+    "States": {
+      "title": "States",
+      "description": "The collection of states.",
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/State"
+      }
+    },
+    "StandardTransition": {
+      "description": "This is the formal transition format defining how states transitions from one to another.",
+      "type": "object",
+      "properties": {
+        "from": {
+          "type": "string"
+        },
+        "to": {
+          "type": "string"
+        },
+        "value": {
+          "default": true
+        }
+      },
+      "required": [
+        "from",
+        "to",
+        "value"
+      ],
+      "additionalProperties": false
+    },
+    "FlexibleTransition": {
+      "description": "This should be of the form 'A->B, value'.",
+      "type": "string"
+    },
+    "Transitions": {
+      "title": "Transitions",
+      "description": "The collection of transitions between states.",
+      "type": "array",
+      "items": {
+        "anyOf": [
+          {
+            "$ref": "#/definitions/FlexibleTransition"
+          },
+          {
+            "$ref": "#/definitions/StandardTransition"
+          }
+        ]
+      }
+    },
+    "StringAnswer": {
+      "description": "A simple string answer.",
+      "type": "object"
+    },
+    "Pod": {
+      "description": "An object which will on the UI be mapped to something meaningful (e.g. dataviz).",
+      "type": "object",
+      "properties": {
+        "DataType": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "DataType"
+      ]
+    },
+    "PodArray": {
+      "description": "A collection of pods.",
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/definitions/Pod"
+      }
+    },
+    "Answer": {
+      "title": "Answer",
+      "description": "The answer or how to assemble the answer.",
+      "anyOf": [
+        {
+          "$ref": "#/definitions/StringAnswer"
+        },
+        {
+          "$ref": "#/definitions/PodArray"
+        }
+      ]
+    },
+    "Context": {
+      "title": "Context",
+      "description": "A way to assign things like personalization as part of this processing.",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "Name": {
+            "description": "What kind of property to assign.",
+            "type": "string",
+            "default": "Personalization"
+          },
+          "Value": {
+            "type": "string"
+          },
+          "DataType": {
+            "description": "The context action to perform. Usually a setter.",
+            "type": "string",
+            "default": "Set"
+          }
+        },
+        "required": [
+          "Name",
+          "Value"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "Graph": {
+      "type": "object",
+      "properties": {
+        "Semantic": {
+          "type": "boolean",
+          "default": true
+        },
+        "Nodes": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "Title": {
+                "type": "string"
+              },
+              "DataType": {
+                "type": "string"
+              },
+              "Id": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "Links": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "IdSource": {
+                "type": "string"
+              },
+              "IdTarget": {
+                "type": "string"
+              },
+              "Title": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    },
+    "Workflow": {
+      "$ref": "#/definitions/WorkflowRoot"
+    },
+    "CreateReturn": {
+      "title": "CreateReturn",
+      "minProperties": 1,
+      "maxProperties": 1,
+      "properties": {
+        "Workflow": {
+          "$ref": "#/definitions/Workflow"
+        },
+        "Graph": {
+          "$ref": "#/definitions/Graph"
+        }
+      }
+    },
+    "Think": {
+      "title": "Think",
+      "description": "Some side effects of formulating this answer.",
+      "properties": {
+        "Context": {
+          "$ref": "#/definitions/Context"
+        },
+        "CreateReturn": {
+          "$ref": "#/definitions/CreateReturn"
+        }
+      }
+    },
+    "Template": {
+      "title": "Template",
+      "description": "The answer or how the answer should be assembled.",
+      "type": "object",
+      "properties": {
+        "Answer": {
+          "$ref": "#/definitions/Answer"
+        },
+        "Think": {
+          "$ref": "#/definitions/Think"
+        }
+      },
+      "required": [
+        "Answer",
+        "Think"
+      ],
+      "additionalProperties": false
+    },
+    "QTL": {
+      "description": "Qwiery template language",
+      "type": "object",
+      "properties": {
+        "Id": {
+          "description": "The supposedly unique identifier of this template. If none supplied it will be generated.",
+          "type": "string"
+        },
+        "Description": {
+          "description": "A description of this template.",
+          "type": "string"
+        },
+        "Questions": {
+          "description": "This defines which parametrized questions can be answered by this template.",
+          "anyOf": [
+            {
+              "description": "A single question.",
+              "type": "string"
+            },
+            {
+              "$ref": "#/definitions/Questions"
+            }
+          ]
+        },
+        "Template": {
+          "$ref": "#/definitions/Template"
+        },
+        "UserId": {
+          "description": "Defines the scope of the template; a single userId or everyone.",
+          "anyOf": [
+            {
+              "description": "A userId for whom this template applies (is private).",
+              "type": "string"
+            },
+            {
+              "description": "Use 'Everyone' if this template can be used by every user.",
+              "type": "string",
+              "enum": [
+                "Everyone"
+              ]
+            }
+          ]
+        },
+        "Category": {
+          "description": "The knowledge domain this template belongs to. Note that apps can be constrained to categories.",
+          "type": "string"
+        }
+      },
+      "required": [
+        "Questions",
+        "Template",
+        "UserId",
+        "Category"
+      ],
+      "additionalProperties": false
+    },
+    "Questions": {
+      "description": "An array of questions.",
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  }
+}

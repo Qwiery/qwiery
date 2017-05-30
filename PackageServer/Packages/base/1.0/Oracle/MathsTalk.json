@@ -1,0 +1,18 @@
+[
+  {
+    "Id": "maths001",
+    "Template": {
+      "Answer": {
+        "%eval": "services.maths.getArray()"
+      }
+    },
+    "UserId": "Everyone",
+    "Category": "Maths",
+    "Questions": [
+      "array",
+      "some numbers",
+      "numbers",
+      "digits"
+    ]
+  }
+]

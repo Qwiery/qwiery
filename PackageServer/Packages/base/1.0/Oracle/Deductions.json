@@ -1,0 +1,40 @@
+[
+    {
+        "Id": "A tree is a plant",
+        "Template": {
+            "Answer": {
+                "String": "Ok, a %1 is cool."
+            },
+            "Think": {
+                "Create": {
+                    "Graph": {
+                        "Semantic": true,
+                        "Nodes": [
+                            {
+                                "Title": "%1",
+                                "DataType": "Thought",
+                                "Id": 1
+                            },
+                            {
+                                "Title": "%2",
+                                "DataType": "Thought",
+                                "Id": 2
+                            }
+                        ],
+                        "Links": [
+                            {
+                                "IdSource": "1",
+                                "IdTarget": "2",
+                                "Title": "is"
+                            }
+                        ]
+                    }
+                }
+            }
+        },
+        "UserId": "Everyone",
+        "Category": "Deductions",
+        "Description": "This records the semantic relationship between the concepts.",
+        "Questions": "A %1 is a %2"
+    }
+]

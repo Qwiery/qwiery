@@ -1,0 +1,8 @@
+A workflow state captures the current state in a process. At any given point in the lifecycle of a workflow only one state can be active. When a state becomes active it's the state which will receive the input, all other states are muted. Between each input a workflow is serialized (saved) together with all the data and state info. The reason for this is simple: many users can be connected simultaneously and the input needed to proceed with the workflow can be entered anything between seconds and days. 
+The lifecycle of a state consists in chronological order of the following:
+
+- a state is activated either because it's the initial state or because a transition occured towards the state. The **activate** method is called and this allows a state to be initialized and to access context info (variables, personalization etc.).
+- a state is executed because new input became available. The **execute** method is called and the result of this method defines whether the input is accepted or rejected. If accepted the workflow will proceed to the next state (or terminate the flow) or remain in the same state. The **accepted** and **rejected** methods are called respectively.
+- a state is deactivated and this allows a state to finalize it's function, set variables and so on. The **deactivate** method is called and the flow is saved to the backend.
+
+Checking for empty input and checking whether the user wants to quit the flow happens independently of the state. Creating custom states is hence very easy, see e.g. the [custom workflow tutorial]{@link How_CustomState}.

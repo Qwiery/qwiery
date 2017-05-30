@@ -1,0 +1,41 @@
+{
+  "userId": "Anonymous",
+  "identity": {
+    "id": "Anonymous",
+    "apiKey": "Anonymous",
+    "local": {
+      "email": "info@qwiery.com",
+      "password": "This will never be used"
+    }
+  },
+  "graph": {
+    "userId": "Anonymous",
+    "Links": [],
+    "Entities": [],
+    "Workspaces": [
+      {
+        "Users": [
+          "Anonymous"
+        ],
+        "WorkspaceId": "Anonymous:default",
+        "Name": "Default workspace",
+        "IsPublic": false,
+        "IsDefault": true,
+        "UserId": "Anonymous"
+      }
+    ],
+    "Metadata": {
+      "UserId": "Anonymous",
+      "Workspaces": [
+        "Anonymous:default"
+      ],
+      "Tags": [],
+      "Trail": [],
+      "CurrentWorkspace": "Anonymous:default"
+    }
+  },
+  "personalization": {
+    "userId": "Anonymous",
+    "personalizations": []
+  }
+}

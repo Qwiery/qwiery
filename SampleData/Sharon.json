@@ -1,0 +1,505 @@
+{
+  "userId": "Sharon",
+  "identity": {
+    "id": "Sharon",
+    "apiKey": "Sharon",
+    "local": {
+      "email": "sharon@qwiery.com",
+      "password": "This will never be used"
+    },
+    "facebook": {
+      "email": "sharon_eieskkg_ambjorn@tfbnw.net",
+      "first_name": "Sharon",
+      "last_name": "Ambjorn",
+      "name": "Sharon Ambjorn",
+      "timezone": 2,
+      "verified": false,
+      "id": "100007729021723",
+      "picture": "https://graph.facebook.com/100007729021723/picture",
+      "thumbnail": "https://graph.facebook.com/100007729021723/picture"
+    }
+  },
+  "graph": {
+    "userId": "Sharon",
+    "Metadata": {
+      "UserId": "Sharon",
+      "Workspaces": [
+        "Sharon:default",
+        "DocumentationSpace"
+      ],
+      "Tags": [
+        "Music",
+        "Documentation"
+      ],
+      "Trail": [
+        "HDRIRendering",
+        "Ludwig",
+        "D",
+        "Spheres",
+        "Connected",
+        "GarashCake",
+        "Green tea",
+        "Impression",
+        "Maecenas",
+        "LoremIpsum"
+      ],
+      "CurrentWorkspace": "Sharon:default"
+    },
+    "Workspaces": [
+      {
+        "WorkspaceId": "Sharon:default",
+        "Name": "Default workspace",
+        "IsPublic": false,
+        "IsDefault": true,
+        "UserId": "Sharon",
+        "Users": [
+          "Sharon"
+        ]
+      },
+      {
+        "WorkspaceId": "DocumentationSpace",
+        "Name": "Documentation workspace",
+        "IsPublic": true,
+        "IsDefault": false,
+        "UserId": "Sharon",
+        "Users": [
+          "Sharon",
+          "Everyone"
+        ]
+      }
+    ],
+    "Entities": [
+      {
+        "Id": "Login",
+        "Title": "Login",
+        "Description": "All the basic login functionality should work flawlessly. Check also the Anonymous situation.",
+        "DataType": "Task",
+        "WorkspaceId": "Sharon:default",
+        "Tags": [],
+        "Users": [
+          "Sharon"
+        ],
+        "UserId": "Sharon"
+      },
+      {
+        "Id": "WhoAmI",
+        "Title": "Who am I",
+        "Description": "When logged in this should use the Username personalization set via Social info. Otherwise something like 'You are not known.'.",
+        "Priority": 6,
+        "DataType": "Task",
+        "WorkspaceId": "Sharon:default",
+        "Tags": [],
+        "Users": [
+          "Sharon"
+        ],
+        "UserId": "Sharon"
+      },
+      {
+        "Id": "AddingTasks",
+        "Title": "Adding a task via the 'add task:' prefix.",
+        "Description": "New tasks should be easily added.",
+        "DataType": "Task",
+        "WorkspaceId": "Sharon:default",
+        "Tags": [],
+        "Users": [
+          "Sharon"
+        ],
+        "UserId": "Sharon"
+      },
+      {
+        "Id": "AddingThoughts",
+        "Title": "Adding a thought via the 'add idea:' prefix.",
+        "Description": "New thoughts should be easily added.",
+        "DataType": "Task",
+        "WorkspaceId": "Sharon:default",
+        "Tags": [],
+        "Users": [
+          "Sharon"
+        ],
+        "UserId": "Sharon"
+      },
+      {
+        "Id": "Breakfast",
+        "Title": "Friday between 5AM and 7AM: breakfast with Julia",
+        "Description": "Some basic time handling should be functional.",
+        "DataType": "Task",
+        "WorkspaceId": "Sharon:default",
+        "Tags": [],
+        "Users": [
+          "Sharon"
+        ],
+        "UserId": "Sharon"
+      },
+      {
+        "Id": "News",
+        "Title": "News",
+        "Description": "The news input should return some news.",
+        "DataType": "Task",
+        "WorkspaceId": "Sharon:default",
+        "Tags": [],
+        "Users": [
+          "Sharon"
+        ],
+        "UserId": "Sharon"
+      },
+      {
+        "Id": "DragdropEntity",
+        "Title": "Dragdrop entity to hyperlink",
+        "Description": "Dragdrop from the trail to the entity should hyperlink.",
+        "DataType": "Task",
+        "WorkspaceId": "Sharon:default",
+        "Tags": [],
+        "Users": [
+          "Sharon"
+        ],
+        "UserId": "Sharon"
+      },
+      {
+        "Id": "Elephants",
+        "Title": "Elephants",
+        "Description": "The 'images of elephants' should give a list of, well, elephants.",
+        "DataType": "Task",
+        "WorkspaceId": "Sharon:default",
+        "Tags": [],
+        "Users": [
+          "Sharon"
+        ],
+        "UserId": "Sharon"
+      },
+      {
+        "Id": "Tomorrow",
+        "Title": "Tomorrow",
+        "Description": "The 'Tomorrow stuff' should add an agenda item.",
+        "DataType": "Task",
+        "WorkspaceId": "Sharon:default",
+        "Tags": [],
+        "Users": [
+          "Sharon"
+        ],
+        "UserId": "Sharon"
+      },
+      {
+        "Id": "JohnField",
+        "Title": "John Field",
+        "Description": "Such a great Irish composer.",
+        "DataType": "Person",
+        "WorkspaceId": "Sharon:default",
+        "Tags": [
+          "Music"
+        ],
+        "Users": [
+          "Sharon"
+        ],
+        "UserId": "Sharon"
+      },
+      {
+        "Id": "Ludwig",
+        "Title": "Ludwig von Beethoven",
+        "Description": "The greatest.",
+        "DataType": "Person",
+        "WorkspaceId": "Sharon:default",
+        "Tags": [],
+        "Users": [
+          "Sharon"
+        ],
+        "UserId": "Sharon"
+      },
+      {
+        "Id": "HDRIRendering",
+        "Title": "HDRI rendering",
+        "DataType": "Thought",
+        "Description": "The use of high-dynamic-range imaging (HDRI) in computer graphics was introduced by Greg Ward in 1985 with his open-source Radiance rendering and lighting simulation software which created the first file format to retain a high-dynamic-range image. HDRI languished for more than a decade, held back by limited computing power, storage, and capture methods. Not until recently has the technology to put HDRI into practical use been developed.[2][3]\n\nIn 1990, Nakame, et al., presented a lighting model for driving simulators that highlighted the need for high-dynamic-range processing in realistic simulations.[4]\n\nIn 1995, Greg Spencer presented Physically-based glare effects for digital images at SIGGRAPH, providing a quantitative model for flare and blooming in the human eye.[5]\n\nIn 1997 Paul Debevec presented Recovering high dynamic range radiance maps from photographs[6] at SIGGRAPH and the following year presented Rendering synthetic objects into real scenes.[7] These two papers laid the framework for creating HDR light probes of a location and then using this probe to light a rendered scene.\n\nHDRI and HDRL (high-dynamic-range image-based lighting) have, ever since, been used in many situations in 3D scenes in which inserting a 3D object into a real environment requires the lightprobe data to provide realistic lighting solutions.\n\nIn gaming applications, Riven: The Sequel to Myst in 1997 used an HDRI postprocessing shader directly based on Spencer's paper.[8] After E³ 2003, Valve Software released a demo movie of their Source engine rendering a cityscape in a high dynamic range.[9] The term was not commonly used again until E³ 2004, where it gained much more attention when Valve Software announced Half-Life 2: Lost Coast and Epic Games showcased Unreal Engine 3, coupled with open-source engines such as OGRE 3D and open-source games like Nexuiz.",
+        "WorkspaceId": "Sharon:default",
+        "Tags": [],
+        "Users": [
+          "Sharon"
+        ],
+        "UserId": "Sharon"
+      },
+      {
+        "Id": "D",
+        "Title": "Small networks",
+        "Description": "A certain category of small-world networks were identified as a class of random graphs by Duncan Watts and Steven Strogatz in 1998.[2] They noted that graphs could be classified according to two independent structural features, namely the clustering coefficient, and average node-to-node distance (also known as average shortest path length). Purely random graphs, built according to the Erdős–Rényi (ER) model, exhibit a small average shortest path length (varying typically as the logarithm of the number of nodes) along with a small clustering coefficient. Watts and Strogatz measured that in fact many real-world networks have a small average shortest path length, but also a clustering coefficient significantly higher than expected by random chance. Watts and Strogatz then proposed a novel graph model, currently named the Watts and Strogatz model, with (i) a small average shortest path length, and (ii) a large clustering coefficient. The crossover in the Watts–Strogatz model between a \"large world\" (such as a lattice) and a small world was first described by Barthelemy and Amaral in 1999.[3] This work was followed by a large number of studies, including exact results (Barrat and Weigt, 1999; Dorogovtsev and Mendes; Barmpoutis and Murray, 2010).",
+        "DataType": "Thought",
+        "WorkspaceId": "Sharon:default",
+        "Tags": [],
+        "Users": [
+          "Sharon"
+        ],
+        "UserId": "Sharon"
+      },
+      {
+        "Id": "Maecenas",
+        "Title": "Maecenas rhoncus elit a aliquam porttitor",
+        "Description": "\nSuspendisse dapibus feugiat venenatis. Maecenas rhoncus elit a aliquam porttitor. Phasellus suscipit eget velit eget tincidunt. Sed non euismod nibh, vitae dapibus arcu. Nullam in tortor augue. Ut varius tortor id dapibus fermentum. Donec pretium sed quam ut varius. Vivamus malesuada feugiat mauris nec laoreet. Integer ac suscipit est, non scelerisque lectus.\n\n",
+        "DataType": "Task",
+        "WorkspaceId": "Sharon:default",
+        "Tags": [],
+        "Users": [
+          "Sharon"
+        ],
+        "UserId": "Sharon"
+      },
+      {
+        "Id": "q1cVfvD9vS",
+        "Title": "Integer vitae faucibus sapien",
+        "Description": "Morbi non massa ut ipsum bibendum malesuada. Integer vitae faucibus sapien. In hac habitasse platea dictumst. Praesent vitae velit augue. Interdum et malesuada fames ac ante ipsum primis in faucibus. Proin sodales nisi vitae iaculis mattis. Pellentesque pretium, dui non interdum ullamcorper, nibh elit consectetur arcu, quis sollicitudin libero nunc eget velit. Etiam vestibulum ex at velit suscipit fermentum et sed ipsum. Duis a sollicitudin turpis. Aliquam in magna tempus, laoreet lorem in, pellentesque dui. Morbi lacinia turpis nec augue condimentum cursus. Ut a blandit urna. Quisque vitae convallis urna. Suspendisse ac congue nisi. Quisque semper egestas quam. Mauris bibendum enim lacus, ut tincidunt ligula vestibulum sed.\n",
+        "DataType": "Task",
+        "WorkspaceId": "Sharon:default",
+        "Tags": [],
+        "Users": [
+          "Sharon"
+        ],
+        "UserId": "Sharon"
+      },
+      {
+        "Id": "5kwBxRAHvk",
+        "Title": "Vivamus a mauris mollis",
+        "Description": "\nMauris et diam convallis, vulputate felis tincidunt, faucibus magna. Sed sollicitudin orci ligula, vel gravida magna malesuada sit amet. Ut imperdiet justo dolor, a pretium purus accumsan nec. Ut lobortis urna a dictum tristique. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Maecenas dignissim nec justo vitae sollicitudin. Vivamus eu laoreet risus, lacinia volutpat felis. Vivamus fermentum et eros et sollicitudin. Nam eget tortor ultrices, luctus erat ac, gravida neque. Sed pulvinar aliquet massa. Praesent varius rhoncus sagittis.\n",
+        "DataType": "Task",
+        "WorkspaceId": "Sharon:default",
+        "Tags": [],
+        "Users": [
+          "Sharon"
+        ],
+        "UserId": "Sharon"
+      },
+      {
+        "Id": "LoremIpsum",
+        "Title": "Lorem ipsum",
+        "Priority": 5,
+        "Description": " Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus a mauris mollis, pellentesque metus nec, fermentum nunc. Nunc tempor maximus erat, faucibus laoreet lorem finibus non. Aenean molestie tellus lacus, elementum porttitor nunc molestie in. Sed sollicitudin lacus eu lectus commodo sagittis. Nulla facilisi. Vivamus vitae nulla blandit, semper lorem non, viverra elit. Nunc maximus tellus vel diam mattis imperdiet. Ut aliquam molestie magna, sit amet euismod neque eleifend at. Vestibulum ut dictum neque. Donec nisl nisi, consequat fermentum ultricies eget, sagittis in ex.\n\nSuspendisse dapibus feugiat venenatis. Maecenas rhoncus elit a aliquam porttitor. Phasellus suscipit eget velit eget tincidunt. Sed non euismod nibh, vitae dapibus arcu. Nullam in tortor augue. Ut varius tortor id dapibus fermentum. Donec pretium sed quam ut varius. Vivamus malesuada feugiat mauris nec laoreet. Integer ac suscipit est, non scelerisque lectus.\n\nMorbi non massa ut ipsum bibendum malesuada. Integer vitae faucibus sapien. In hac habitasse platea dictumst. Praesent vitae velit augue. Interdum et malesuada fames ac ante ipsum primis in faucibus. Proin sodales nisi vitae iaculis mattis. Pellentesque pretium, dui non interdum ullamcorper, nibh elit consectetur arcu, quis sollicitudin libero nunc eget velit. Etiam vestibulum ex at velit suscipit fermentum et sed ipsum. Duis a sollicitudin turpis. Aliquam in magna tempus, laoreet lorem in, pellentesque dui. Morbi lacinia turpis nec augue condimentum cursus. Ut a blandit urna. Quisque vitae convallis urna. Suspendisse ac congue nisi. Quisque semper egestas quam. Mauris bibendum enim lacus, ut tincidunt ligula vestibulum sed.\n\nMauris et diam convallis, vulputate felis tincidunt, faucibus magna. Sed sollicitudin orci ligula, vel gravida magna malesuada sit amet. Ut imperdiet justo dolor, a pretium purus accumsan nec. Ut lobortis urna a dictum tristique. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Maecenas dignissim nec justo vitae sollicitudin. Vivamus eu laoreet risus, lacinia volutpat felis. Vivamus fermentum et eros et sollicitudin. Nam eget tortor ultrices, luctus erat ac, gravida neque. Sed pulvinar aliquet massa. Praesent varius rhoncus sagittis.\n\nInteger maximus quam orci, nec sollicitudin mauris cursus a. Suspendisse ut maximus erat. Pellentesque sit amet urna imperdiet, rhoncus ligula sed, cursus lacus. Mauris nunc purus, pharetra placerat condimentum eu, ultricies vel ligula. Vivamus maximus mauris ut justo feugiat viverra. Nullam semper accumsan gravida. Praesent a tempor massa. Sed convallis quis tortor vel viverra.",
+        "DataType": "Task",
+        "WorkspaceId": "Sharon:default",
+        "Tags": [],
+        "Users": [
+          "Sharon"
+        ],
+        "UserId": "Sharon"
+      },
+      {
+        "Id": "Spheres",
+        "Title": "Spheres",
+        "Source": "Spheres.jpg",
+        "Description": "HDRI rendering",
+        "DataType": "Image",
+        "WorkspaceId": "Sharon:default",
+        "Tags": [],
+        "Users": [
+          "Sharon"
+        ],
+        "UserId": "Sharon"
+      },
+      {
+        "Id": "Connected",
+        "Title": "Connected structure",
+        "Source": "Connected.jpg",
+        "Description": "Artistic impression of connectedness and graphs.",
+        "DataType": "Image",
+        "WorkspaceId": "Sharon:default",
+        "Tags": [],
+        "Users": [
+          "Sharon"
+        ],
+        "UserId": "Sharon"
+      },
+      {
+        "Id": "Help",
+        "Title": "Help",
+        "Description": "These are some of the question and commands you can try out. It assembles a bit of all the possibilities that Qwiery offers. You can edit this list yourself, it's an entity in a public notebook.\n\n- [what is anorexia](http://localhost:4785/?q=what%20is%20anorexia) is unknown to Qwiery and will engender a lookup.\n- [what is quantum mechanics](http://localhost:4785/?q=what%20is%20quantum%20mechanics) is not a lookup but part of Qwiery's knowledge.\n- [who am i](http://localhost:4785/?q=who%20am%20i) will look up your user name if available.\n- [images of elephants](http://localhost:4785/?q=images%20of%20elephants) is understood as a request to display images of elephants.\n- [agenda](http://localhost:4785/?q=agenda) displays your agenda.\n- [addresses](http://localhost:4785/?q=addresses) lists the addresses you have recorded.\n- [add person: John Field](http://localhost:4785/?q=add%20person:%20John%20Field) will add \"John Field\" as a person entity to your semantic network.\n- [people](http://localhost:4785/?q=people) displays the person entities of your network.\n- [news](http://localhost:4785/?q=news) displays the latest news (according to Google, Bing or the service assigned).\n- [favorites](http://localhost:4785/?q=favorites) shows the entities you have marked as favorite.\n- [clear](http://localhost:4785/?q=clear) is a client-side instruction to remove pods, trail etc. from the screen. The \n- [search: j*](http://localhost:4785/?q=search:%20j*)\n- [add address: home](http://localhost:4785/?q=add%20address:%20home)\n- [add idea: write some poetry in the morning](http://localhost:4785/?q=add%20idea:%20write%20some%20poetry%20in%20the%20morning)\n- [idea: string theory](http://localhost:4785/?q=idea:%20string%20theory) will add the thought or idea 'string theory' to your notebook. All your  [ideas](http://localhost:4785/?q=ideas) can be displayed as a mosaic.\n- [add task: clean the car](http://localhost:4785/?q=tasks) adds the task to your tasks which can be picked up via the [tasks](http://localhost:4785/?q=tasks) input.\n- [trail](http://localhost:4785/?q=trail) shows the recent questions, thoughts etc. you have asked.\n- [trace](http://localhost:4785/?q=trace) shows a trace of how Qwiery ansered your question.\n- [elements](http://localhost:4785/?q=elements) shows links to your tags, favorites and such.\n- [show all](http://localhost:4785/?q=show%20all) will render the various client elements.\n- [hide all](http://localhost:4785/?q=hide%20all) clears the client.\n- [login or account](http://localhost:4785/?q=login) allows you to login or register.\n- [logout](http://localhost:4785/?q=logout) will log you out.\n- [profile](http://localhost:4785/?q=profile) shows you all the things Qwiery knows about you.\n\nSome of the admin tokens one can use to manage Qwiery:\n\n- [admin:Users](http://localhost:4785/?q=admin:Users) displays the user management. \n- [admin:usage](http://localhost:4785/?q=admin:usage) shows the usage across all users.",
+        "DataType": "Thought",
+        "WorkspaceId": "DocumentationSpace",
+        "Tags": [
+          "Documentation"
+        ],
+        "Users": [
+          "Sharon",
+          "Everyone"
+        ],
+        "UserId": "Sharon"
+      },
+      {
+        "Id": "GarashCake",
+        "Title": "Garash cake",
+        "DataType": "Thought",
+        "Description": "The Christmas holiday season is behind us. It always feels a bit like climbing a mountain heel. I am enjoying the journey, the beauty of discovering little things at every stop on the way and the thrill and anticipation of seeing the view from the top of the  mountain. We have reached the peak at New Year with a spectacular display of fireworks and cascading emotions full of hope for all that is to come and now that the holidays are over, I am still cherishing the sparkling images of the memorable experiences of all that has been left behind.\n\nThis image of a traditional Bulgarian Garash Cake is one of them. Gracing our Christmas eve dining table, it was a stunning centrepiece at the end of festive meal. Rich and decadent, beautifully balancing the flavours of a crunchy walnut meringue and the softness of a cacao butter cream, contrasted by the delicate zest of fresh berry fruits. We have savoured every bite… A perfect celebration cake just to enjoy indulging oneself or to be generous and share with others. I for myself, know exactly what to choose.\n\n**Ingredients**\n\n**For the cake**\n\n- 8 egg whites\n- 1/2 cup of sugar\n- 3 cups of walnut meal\n- Vanilla essence (8g Vanilla sugar Dr. Oetker)\n- pinch of salt\n- 1tsp cornflour\n- Raspberries\n- Redcurrant\n- Blueberries\n- Powder sugar\n\n**For the cream**\n\n- 1 cup of sugar\n- 1 cup of water\n- 5 tbsp cacao powder\n- 125g butter\n- 8 egg yolks\n\n**Method**\n\n- For the cake. Break the eggs, splitting the whites and the yolks in two separate bowls. Put the yolks aside as they will be needed for the cream. Start preparing the cake layers by whisking the egg whites with a pinch of salt. Ones the soft peaks start to form add the vanilla essence and gradually spoon per spoon in regular intervals of whisking add the sugar. Ones the meringue start to form stiff peaks add one tea spoon of corn flour. Add the walnut meal to the meringue and gently fold it together with a spatular.\n- Layer a baking tray with a baking paper. Using a pen and a round baking form, circle on the baking paper the round size of the cake layers you would like to have. Set a plain round nozzle in a piping bag (the same size you would normally use for making macarons – 12) and fill the bag with the walnut meringue mixture. Starting from the centre of the circle on the baking paper, squeeze the cake mixture making round circles until you reach the end of the rim of the shape you would like to create.\n- Pre-heat the oven to 175C. Set the tray in the oven and bake for 30 minutes. The cake layer is ready when you touch it and it does not stick to your hand. Take it out of the oven and let it cool completely. In the mean time pipe the second layer of the cake and bake. Depending on the size of the circle you should be able to make between 4 and 6 layers of the cake. Try to make them as thin as possible. Once cooled peel off the baking paper from the baked meringue layers.\n- For the cream: In a small pan over a medium heat mix together the water and the sugar until the sugar has dissolved. Add the cacao powder and mix the sirup util all is well combined. Take it out of the heat and let it cool completely.\n- In a separate bowl whisk together the slightly soft butter and start adding the egg yolks one by one. Once all the eggs have been combined add the slightly cooled cacao sirup and whisk together until well combined. Set to cool in the fridge for at least one hour.\n- To assemble the cake: Lay the first meringue layer in the centre of a serving dish. Set a start shaped nozzle in a piping bag and fill it in with the cacao cream. Starting from the centre of the cake pipe in a rozzet shape form the cream util it reaches the rim of the cake. Set the second meringue layer on top and pipe the cream on top. Repeat until you set the final top layer and decorate it on top with the cream. Put the cake in the fridge and let it rest overnight.\n- Before serving decorate the top of the cake withe fresh fruits like raspberries, blueberries and redcurrant and dust with powder sugar.\n\nTaken from [GeriFood.com](http://www.gerifood.com/2016/01/garash-cake/)",
+        "WorkspaceId": "Sharon:default",
+        "Tags": [],
+        "Users": [
+          "Sharon"
+        ],
+        "UserId": "Sharon"
+      },
+      {
+        "Title": "GarashCake.jpg",
+        "Description": "",
+        "DataType": "Image",
+        "Source": "GarashCake.jpg",
+        "Id": "GarashCakeImage",
+        "Users": [
+          "Sharon"
+        ],
+        "Tags": [],
+        "WorkspaceId": "Sharon:default",
+        "UserId": "Sharon"
+      },
+      {
+        "Title": "AppleCake.jpg",
+        "Description": "",
+        "DataType": "Image",
+        "Source": "AppleCake.jpg",
+        "Id": "AppleCakeImage",
+        "Users": [
+          "Sharon"
+        ],
+        "Tags": [],
+        "WorkspaceId": "Sharon:default",
+        "UserId": "Sharon"
+      },
+      {
+        "Title": "GreenTea.jpg",
+        "Description": "",
+        "DataType": "Image",
+        "Source": "GreenTea.jpg",
+        "Id": "GreenTeaImage",
+        "Users": [
+          "Sharon"
+        ],
+        "Tags": [],
+        "WorkspaceId": "Sharon:default",
+        "UserId": "Sharon"
+      },
+      {
+        "Title": "ImpressionFlowers.jpg",
+        "Description": "",
+        "DataType": "Image",
+        "Source": "ImpressionFlowers.jpg",
+        "Id": "ImpressionFlowersImage",
+        "Users": [
+          "Sharon"
+        ],
+        "Tags": [],
+        "WorkspaceId": "Sharon:default",
+        "UserId": "Sharon"
+      },
+      {
+        "Title": "Green tea",
+        "DataType": "Thought",
+        "Id": "GreenTea",
+        "UserId": "Sharon",
+        "Users": [
+          "Sharon"
+        ],
+        "Tags": [],
+        "WorkspaceId": "Sharon:default",
+        "Description": "1\\. De-stress\n-------------\n\nTeas are known to help you relax and green tea is one of the best ones to sip on as you take a moment to yourself. Green tea has a natural chemical called theanine which can provide a calming effect. So brew yourself a cup of green tea with a dash of honey (throw in a bit of ginger for that extra zing), and wash away your stress of the day!\n\n2\\. It’s heart healthy\n----------------------\n\nA review of studies on green tea has shown that it helps to prevent a range of heart-related issues, from high blood pressure to congestive heart failure! Some scientists believe green tea works by keeping the lining of the blood vessels relaxed so it can handle blood pressure alterations efficiently. In addition to reducing blood pressure, there is also some evidence that the tea can protect against the formation of clots—the primary causes of heart attacks.\n\n3\\. Got cholesterol?\n--------------------\n\nGreen tea has been proven to reduce the bad cholesterol in your body while increasing the good cholesterol. The powerful antioxidant in green tea—Epigallocatechin Gallate (EGCG)—may inhibit absorption of cholesterol from the large intestine, which prevents an increase in bad cholesterol from greasy, unhealthy snacks and drinks. Research suggests that drinking at least five cups of green tea a day will help in reducing bad cholesterol.\n\n4\\. It can make you smarter\n---------------------------\n\nOf course, what is good for your heart is usually beneficial to the brain as well because you need healthy blood vessels in the brain. One Swiss study even revealed that people who drank green tea had more active working memory (short term memory). There are certain compounds in tea, like caffeine, that are stimulants which can improve brain functioning without the ‘jittery’ effects of caffeine-filled drinks such as coffee.\n\n5\\. Lowers risk of Alzheimer’s and Parkinson’s\n----------------------------------------------\n\nIt seems that green tea may be able to block the formation of certain plaques that are related to Alzheimer’s disease. Some research has shown that this magical tea can delay the deterioration caused by both Alzheimer’s and Parkinson’s disease. There is even evidence that it can help against dementia as well. Studies carried out on mice showed that green tea protected brain cells from dying and restored damaged brain cells.\n\n6\\. Reduce the risk of cancer?\n------------------------------\n\nGreen tea is thought to kill cancer cells without damaging other cells, and has been shown to reduce the risk of certain cancers such as esophageal cancer, pancreatic cancer, and even oral cancer. The EGCG in the tea is the powerful antioxidant that can kill cancer cells by destroying the cell’s mitochondria, which slowly leads the cancer cells to die. Some say it could even become a possible alternative to chemotherapy!\n\n7\\. Improve oral health\n-----------------------\n\nAlthough many people avoid tea due to the staining effect on teeth, green tea actually helps your oral health! A 2009 study published in the *Journal of Periodontology* found that the more green tea one drank, the lower the risk of periodontal disease. The catechin in tea helps reduce inflammation in the body, controls bacteria that can cause dental conditions like throat infections, and lowers the acidity of saliva and dental plaque—which prevents cavities.\n\n8\\. Improves vision\n-------------------\n\nHow does green tea help your vision? More antioxidants and catechins! Green tea can penetrate the tissue of eyes to produce and absorb antioxidants. A 2001 study published in the journal *Experimental Eye Research* found green tea can actually prevent cataract-induced blindness.\n\n9\\. Protects your skin\n----------------------\n\nApparently, green tea can also help with wrinkles and the signs of aging, thanks to their antioxidant and anti-inflammatory activities. Multiple studies have proven that applying green tea topically even reduced sun damage.\n\n10\\. Manage Diabetes\n--------------------\n\nStudies have shown that green tea also assists in stabilizing blood sugar in people with diabetes. Green tea regulates the glucose levels slowing the rise of blood sugar after eating which can prevent insulin spikes and the resulting fat storage."
+      },
+      {
+        "Title": "Impression",
+        "DataType": "Thought",
+        "Id": "Impression",
+        "UserId": "Sharon",
+        "Users": [
+          "Sharon"
+        ],
+        "Tags": [],
+        "WorkspaceId": "Sharon:default",
+        "Description": "**Impressionism** is a 19th-century [art movement](https://en.wikipedia.org/wiki/Art_movement \"Art movement\") that originated with a group of Paris-based artists whose independent [exhibitions](https://en.wikipedia.org/wiki/Art_exhibition \"Art exhibition\") brought them to prominence during the 1870s and 1880s. Impressionist painting characteristics include relatively small, thin, yet visible brush strokes, open [composition](https://en.wikipedia.org/wiki/Composition_(visual_arts) \"Composition (visual arts)\"), emphasis on accurate depiction of light in its changing qualities (often accentuating the effects of the passage of time), ordinary subject matter, inclusion of *movement* as a crucial element of human perception and experience, and unusual visual angles.\n\nThe Impressionists faced harsh opposition from the conventional art community in France. The name of the style derives from the title of a [Claude Monet](https://en.wikipedia.org/wiki/Claude_Monet \"Claude Monet\") work, *Impression, soleil levant* (*[Impression, Sunrise](https://en.wikipedia.org/wiki/Impression,_Sunrise \"Impression, Sunrise\")*), which provoked the critic [Louis Leroy](https://en.wikipedia.org/wiki/Louis_Leroy \"Louis Leroy\") to [coin](https://en.wikipedia.org/wiki/Word_coinage \"Word coinage\") the term in a [satirical](https://en.wikipedia.org/wiki/Satire \"Satire\") review published in the Parisian newspaper *[Le Charivari](https://en.wikipedia.org/wiki/Le_Charivari \"Le Charivari\")*.\n\nThe development of Impressionism in the [visual arts](https://en.wikipedia.org/wiki/Visual_arts \"Visual arts\") was soon followed by analogous styles in other media that became known as [impressionist music](https://en.wikipedia.org/wiki/Impressionist_music \"Impressionist music\") and [impressionist literature](https://en.wikipedia.org/wiki/Impressionism_(literature) \"Impressionism (literature)\").\n\nRadicals in their time, early Impressionists violated the rules of academic painting. They constructed their pictures from freely brushed colours that took precedence over lines and contours, following the example of painters such as [Eugène Delacroix](https://en.wikipedia.org/wiki/Eug%C3%A8ne_Delacroix \"Eugène Delacroix\") and [J. M. W. Turner](https://en.wikipedia.org/wiki/J._M._W._Turner \"J. M. W. Turner\"). They also painted realistic scenes of modern life, and often painted outdoors. Previously, [still lifes](https://en.wikipedia.org/wiki/Still_life \"Still life\") and [portraits](https://en.wikipedia.org/wiki/Portrait \"Portrait\") as well as [landscapes](https://en.wikipedia.org/wiki/Landscape_art \"Landscape art\") were usually painted in a studio.[[1]](https://en.wikipedia.org/wiki/Impressionism#cite_note-1) The Impressionists found that they could capture the momentary and transient effects of sunlight by painting *[en plein air](https://en.wikipedia.org/wiki/En_plein_air \"En plein air\")*. They portrayed overall visual effects instead of details, and used short \"broken\" brush strokes of mixed and pure unmixed colour—not blended smoothly or shaded, as was customary—to achieve an effect of intense colour vibration.\n\nImpressionism emerged in France at the same time that a number of other painters, including the Italian artists known as the [Macchiaioli](https://en.wikipedia.org/wiki/Macchiaioli \"Macchiaioli\"), and [Winslow Homer](https://en.wikipedia.org/wiki/Winslow_Homer \"Winslow Homer\") in the United States, were also exploring *plein-air* painting. The Impressionists, however, developed new techniques specific to the style. Encompassing what its adherents argued was a different way of seeing, it is an art of immediacy and movement, of candid poses and compositions, of the play of light expressed in a bright and varied use of colour.\n\nThe public, at first hostile, gradually came to believe that the Impressionists had captured a fresh and original vision, even if the art critics and art establishment disapproved of the new style.\n\nBy recreating the sensation in the eye that views the subject, rather than delineating the details of the subject, and by creating a welter of techniques and forms, Impressionism is a precursor of various painting styles, including [Neo-Impressionism](https://en.wikipedia.org/wiki/Neo-Impressionism \"Neo-Impressionism\"), [Post-Impressionism](https://en.wikipedia.org/wiki/Post-Impressionism \"Post-Impressionism\"), [Fauvism](https://en.wikipedia.org/wiki/Fauvism \"Fauvism\"), and [Cubism](https://en.wikipedia.org/wiki/Cubism \"Cubism\")."
+      },
+      {
+        "Title": "The greatest speech ever made",
+        "DataType": "Video",
+        "Id": "GreatestSpeech",
+        "UserId": "Sharon",
+        "Url": "https://www.youtube.com/embed/WibmcsEGLKo",
+        "Description": "Charlie Chaplin's final speech in The Great Dictator.",
+        "Users": [
+          "Sharon"
+        ],
+        "Tags": [
+          "YouTube",
+          "Great",
+          "Video"
+        ],
+        "WorkspaceId": "Sharon:default"
+      }
+    ],
+    "Links": [
+      {
+        "IdSource": "Login",
+        "IdTarget": "WhoAmI",
+        "Id": "h5m65iiBlH",
+        "UserId": "Sharon"
+      },
+      {
+        "IdSource": "WhoAmI",
+        "IdTarget": "SharedThought",
+        "Id": "h5m65iiRRR",
+        "UserId": "Sharon"
+      },
+      {
+        "IdSource": "HDRIRendering",
+        "IdTarget": "D",
+        "Id": "sw985sdg5D",
+        "UserId": "Sharon"
+      },
+      {
+        "IdSource": "HDRIRendering",
+        "IdTarget": "Spheres",
+        "Id": "s5lmsdg5D",
+        "UserId": "Sharon"
+      },
+      {
+        "IdSource": "D",
+        "IdTarget": "Connected",
+        "Id": "s5lmsdSUIB",
+        "UserId": "Sharon"
+      },
+      {
+        "IdSource": "GarashCake",
+        "IdTarget": "GarashCakeImage",
+        "Id": "oYbMtbE9qA",
+        "Title": "has image",
+        "UserId": "Sharon"
+      },
+      {
+        "IdSource": "GarashCake",
+        "IdTarget": "AppleCakeImage",
+        "Id": "UY571bE9qA",
+        "Title": "has image",
+        "UserId": "Sharon"
+      },
+      {
+        "IdSource": "GreenTea",
+        "IdTarget": "GreenTeaImage",
+        "Id": "UY571bE9qA",
+        "Title": "has image",
+        "UserId": "Sharon"
+      },
+      {
+        "IdSource": "Impression",
+        "IdTarget": "ImpressionFlowersImage",
+        "Id": "UY571bE9qA",
+        "Title": "has image",
+        "UserId": "Sharon"
+      }
+    ]
+  },
+  "personalization": {
+    "userId": "Sharon",
+    "personalizations": [
+      {
+        "key": "Like",
+        "value": "pizza"
+      },
+      {
+        "key": "Username",
+        "value": "Sharon"
+      },
+      {
+        "key": "Location",
+        "value": "Leuven"
+      }
+    ]
+  }
+}

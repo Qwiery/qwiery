@@ -1,0 +1,7 @@
+instrumentation:
+  root: .
+  default-excludes: true
+  include-all-sources: true
+  excludes: ['**/Commands.js']
+reporting:
+  dir: "coverage"

@@ -1,0 +1,18 @@
+{
+  "name": "calculator",
+  "version": "1.0.0",
+  "description": "This is an example of a Qwiery package.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "Qwiery",
+    "AI"
+  ],
+  "author": "Francois Vanderseypen",
+  "license": "ISC",
+  "dependencies": {
+    "mathjs": "^3.12.2"
+  }
+}

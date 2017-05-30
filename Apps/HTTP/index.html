@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Qwiery</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js" type="text/javascript"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+          crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp"
+          crossorigin="anonymous">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+            crossorigin="anonymous"></script>
+    <style type="text/css">
+        body {
+            font-family: 'Open Sans', Arial, Helvetica, sans-serif;
+        }
+
+        .ask-container {
+            margin: 10px 15%;
+            max-width: 800px;
+            min-width: 70%;
+        }
+
+        #exchangeContainer {
+            margin: 10px 15%;
+            max-width: 800px;
+            min-width: 70%;
+            max-height: 800px;
+            overflow: auto;
+        }
+
+        .user-bubble {
+            background-color: #4bd34b;
+            color: whitesmoke;
+            padding: 7px;
+            margin: 5px 0 5px 0;
+            border-radius: 5px;
+
+        }
+
+        .qwiery-bubble {
+            background-color: lightgrey;
+            color: dimgrey;
+            padding: 7px;
+            margin: 5px 30% 5px 0;
+            border-radius: 5px;
+            min-width: 50%;
+        }
+
+        .time {
+            color: silver;
+            font-size: x-small;
+        }
+
+        .space {
+            border-radius: 5px;
+            border: 1px solid lightgrey;
+            padding: 10px 20px;
+        }
+
+        th {
+            text-align: left;
+        }
+
+        table {
+            width: 100%;
+        }
+
+        #inputter {
+            outline: none;
+        }
+    </style>
+    <script type="text/javascript">
+        function qa() {
+            var q = $("#inputter").val().trim();
+            if(q.length > 0) {
+                addUser(q);
+                $.ajax({
+                    url: "http://localhost:3000/ask",
+                    method: "POST",
+                    headers: {'Content-Type': 'application/json'},
+                    timeout: 5000,
+                    data: JSON.stringify({question: q})
+                }).then(function(a) {
+                   answer(a.answer);
+                });
+            }
+        }
+        function answer(a){
+            addQwiery(a);
+            $("#exchangeContainer").animate({scrollTop: $('#exchangeContainer').prop("scrollHeight")}, 1000);
+        }
+        function addUser(msg) {
+            var blob = $("#user-blob").clone();
+            blob.find(".user-bubble").html(msg);
+            blob.find(".time").html(new Date().toLocaleString());
+            $("#exchangeContainer").append(blob);
+            blob.show();
+        }
+        function addQwiery(msg) {
+            var blob = $("#qwiery-blob").clone();
+            var bubble = blob.find(".qwiery-bubble");
+            setBubbleContent(msg, bubble);
+            if(msg.indexOf("▶") >= 0) {
+                bubble.css({"margin": "5px 0 5px 0"});
+            }
+            blob.find(".time").html(new Date().toLocaleString());
+            $("#exchangeContainer").append(blob);
+            blob.show();
+        }
+        function setBubbleContent(msg, bubble) {
+            if(msg.toLowerCase().indexOf("are you sure") >= 0) {
+                var prompt = $("#confirmation").clone();
+                bubble.html(prompt);
+                prompt.show();
+            } else {
+                bubble.html(msg);
+            }
+        }
+        function postConfirmation(a){
+            $.ajax({
+                url: "http://localhost:3000/ask",
+                method: "POST",
+                headers: {'Content-Type': 'application/json'},
+                timeout: 5000,
+                data: JSON.stringify({question: a})
+            }).then(function(s) {
+                answer(s.answer);
+            });
+        }
+        $(document).ready(function() {
+            $("#askButton").click(function() {
+                qa();
+            });
+            $("#inputter").keypress(function(e) {
+                if(e.which === 13) {
+                    qa();
+                }
+            }).focus();
+        })
+    </script>
+</head>
+<body>
+
+<div class="container">
+    <div class="jumbotron" style="margin-top:20px;">
+        <h1 class="display-3">Qwiery</h1>
+        <p>A generic cognitive agent architecture for text-based user interfaces.</p>
+        <p class="lead">
+            <a class="btn btn-primary btn-lg" href="http://www.qwiery.com" target="_blank" role="button">Learn more</a>
+        </p>
+    </div>
+    <div class="space">
+        <div id="exchangeContainer"></div>
+        <div class="ask-container">
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="input-group input-group-md">
+                        <input id="inputter" type="text" class="form-control"/>
+                        <div class="input-group-btn">
+                            <button id="askButton" type="submit" class="btn">Ask</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="user-blob" class="row pull-right" style="display:none;">
+        <div class="col-xs-12">
+            <div class="input-group input-group-md">
+                <div class="time" style="margin:5px 0 5px 0;"></div>
+                <div class="user-bubble"></div>
+            </div>
+        </div>
+    </div>
+    <div id="qwiery-blob" class="row" style="display:none;">
+        <div class="col-xs-12">
+            <div class="">
+                <div class="time"></div>
+                <div class="qwiery-bubble"></div>
+            </div>
+        </div>
+    </div>
+    <div id="confirmation" style="display:none;">
+        <p>Are you sure?</p>
+        <div style="margin:20px 0;">
+            <button type="button" class="btn btn-primary" onClick="postConfirmation('yes');">Yes</button>
+            <button type="button" class="btn btn-danger" onClick="postConfirmation('no');">No</button>
+        </div>
+    </div>
+</div>
+</body>
+</html>

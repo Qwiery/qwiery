@@ -1,0 +1,13 @@
+config:
+  target: 'http://localhost:3000'
+  http:
+      timeout: 10
+  phases:
+    - duration: 100
+      arrivalRate: 20
+scenarios:
+  - flow:
+    - post:
+        url: "/ask"
+        json:
+            question: "anything will be answered randomly"

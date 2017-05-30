@@ -1,0 +1,42 @@
+{
+  "Apps": [
+    "Apps",
+    "Bots",
+    "Agents",
+    "Agent",
+    "Intelligent agent",
+    "Bot"
+  ],
+  "Pods": [
+    "Pods",
+    "Pod",
+    "Output"
+  ],
+  "Terms": [
+    "Terms",
+    "EULA",
+    "Conditions",
+    "Legal",
+    "Terms and conditions"
+  ],
+  "Qwiery": [
+    "Qwiery",
+    "about Qwiery"
+  ],
+  "Plugins":[
+    "Plugins",
+    "Modules",
+    "Addins",
+    "Addons"
+  ],
+  "Commands":
+  [
+      "Commands",
+      "Add",
+      "Delete",
+      "Set",
+      "Search",
+      "Language",
+      "Get"
+  ]
+}

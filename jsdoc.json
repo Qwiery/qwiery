@@ -1,0 +1,26 @@
+{
+  "tags": {
+    "allowUnknownTags": true
+  },
+  "source": {
+    "include":["./lib/"],
+    "includePattern": ".+\\.js(doc|x)?$",
+    "excludePattern": "(^|\\/|\\\\)_"
+  },
+  "plugins": ["plugins/markdown"],
+  "templates": {
+    "cleverLinks": false,
+    "monospaceLinks": false,
+    "default": {
+      "outputSourceFiles": false
+    }
+  },
+  "opts":{
+    "destination": "./doc/apidocs/",
+    "recurse": true,
+    "package": "./package.json",
+    "readme":"./doc/README.md",
+    "template": "./node_modules/minami",
+    "tutorials": "./doc/notes"
+  }
+}

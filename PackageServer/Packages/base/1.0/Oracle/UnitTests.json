@@ -1,0 +1,94 @@
+[
+    {
+        "Id": "Unit test question 1",
+        "Template": {
+            "Answer": "This is part of a testing procedure, please ignore."
+        },
+        "UserId": "Everyone",
+        "Category": "Testing",
+        "Topics": [],
+        "Description": "Ensures that the most basic answering is in place.",
+        "Questions": [
+            "Unit test question 1"
+        ]
+    },
+    {
+        "Id": "Unit test question 2",
+        "Template": {
+            "Answer": {
+                "Redirect": "Unit test question 2"
+            }
+        },
+        "UserId": "Everyone",
+        "Category": "Testing",
+        "Topics": [],
+        "Description": "Forces to overflow due to redirections and Qwiery will stop after 10 loops.",
+        "Questions": [
+            "Unit test question 2"
+        ]
+    },
+    {
+        "Id": "you are unknown",
+        "UserId": "Everyone",
+        "Template": {
+            "Answer": {
+                "String": "You are %Username:(unknown to me)."
+            }
+        },
+        "Category": "Testing",
+        "Questions": "Unit test question 3"
+    },
+    {
+        "Id": "personality check",
+        "Template": {
+            "Answer": {
+                "String": "Alright, that's interesting."
+            },
+            "Think": {
+                "Context": [
+                    {
+                        "Name": "Topic",
+                        "Value": "Personality"
+                    },
+                    {
+                        "Name": "Personality",
+                        "Value": "%1"
+                    }
+                ]
+            }
+        },
+        "UserId": "Everyone",
+        "Category": "Testing",
+        "Questions": "My personality is %1"
+    },
+    {
+        "Id": "the topic is",
+        "Template": {
+            "Answer": {
+                "String": "That's cool."
+            },
+            "Think": {
+                "Context": [
+                    {
+                        "Name": "Topic",
+                        "Value": "%1"
+                    }
+                ]
+            }
+        },
+        "UserId": "Everyone",
+        "Category": "Testing",
+        "Questions": "The topic is %1"
+    },
+    {
+        "Id": "user specific",
+        "Template": {
+            "Answer": {
+                "String": "You are the most unusual person I know."
+            }
+        },
+        "UserId": "Sharon",
+        "Category": "Testing",
+        "Questions": "Who am I"
+    }
+]

@@ -1,0 +1,126 @@
+[
+    {
+        "Id": "I enjoy",
+        "Questions": [
+            "I like %1",
+            "I enjoy %1",
+            "I am a fan of %1",
+            "I can enjoy %1"
+        ],
+        "Description": "A simple way to a 'like' personalization.",
+        "Template": {
+            "Answer": {
+                "String": {
+                    "%rand": [
+                        "I'll remember this.",
+                        "That's good to know :)",
+                        "It's added to your preferences.",
+                        "OK, good to know."
+                    ]
+                }
+            },
+            "Think": {
+                "Context": [
+                    {
+                        "Name": "like",
+                        "Value": "%1"
+                    }
+                ]
+            }
+        },
+        "UserId": "Everyone",
+        "Category": "Personalization"
+    },
+    {
+        "Id": "what i like",
+        "Questions": [
+            "What do I like %1"
+        ],
+        "Description": "Asking about a 'like' personalization.",
+        "Template": {
+            "Answer": {
+                "String": {
+                    "%if": "hasPersonalization('like')",
+                    "%then": "You said you like %like.",
+                    "%else": "I don't know you have not told me."
+                }
+            },
+            "Think": {
+                "Context": [
+                    {
+                        "Name": "like",
+                        "Value": "%1"
+                    }
+                ]
+            }
+        },
+        "UserId": "Everyone",
+        "Category": "Personalization"
+    },
+    {
+        "Id": "myname",
+        "Questions": [
+            "What is my name",
+            "My name",
+            "Guess my name",
+            "Who am i"
+        ],
+        "Description": "Gets your name or asks for it.",
+        "Template": {
+            "Answer": "ThinkResult",
+            "Think": {
+                "CreateReturn": {
+                    "Workflow": {
+                        "Name": "Guess flow",
+                        "States": [
+                            {
+                                "name": "Exists",
+                                "type": "Decision",
+                                "transition": "%{hasPersonalization('username')}",
+                                "isInitial": true
+                            },
+                            {
+                                "name": "Ask",
+                                "type": "QA",
+                                "variable": "givenname",
+                                "enter": "I don't know, what is your name?",
+                                "deactivate": {
+                                    "%eval": "capture('username', variables.givenname)"
+                                }
+                            },
+                            {
+                                "name": "Remembered",
+                                "type": "Dummy",
+                                "enter": {
+                                    "%rand": [
+                                        "Cool, nice to meet you %username",
+                                        "Will use %username from now on."
+                                    ]
+                                },
+                                "final": true
+                            },
+                            {
+                                "name": "Know",
+                                "type": "Dummy",
+                                "enter": {
+                                    "%rand": [
+                                        "You said you are called %username",
+                                        "You told me your name is %username"
+                                    ]
+                                },
+                                "final": true
+                            }
+                        ],
+                        "Transitions": [
+                            "Exists->Know",
+                            "Exists->Ask, false",
+                            "Ask->Remembered"
+                        ]
+                    }
+                }
+            }
+        },
+        "UserId": "Everyone",
+        "Category": "Personalization"
+    }
+]
