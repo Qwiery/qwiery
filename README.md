@@ -15,6 +15,7 @@ Out of the box you will find in Qwiery a broad range of functionalities and feat
 - **packages** can extend the functionality of Qwiery. The Qwiery package server allows to package custom plugins and interactions so you can share, reuse and collaborate around a particular domain. Qwiery packages are versioned and the server code can easily be adapted to custom needs
 - **NLP oriented** through various integrated utilities: POS, sentiment analysis, rule-based sentence filtering and so on
 - **workflows** (aka state machines) help you create coherent interactions around related tasks (say, ordering train tickets)
+- a **REST facade** allows you to use Qwiery as part a microservice architecture, in the cloud and whatnot. [Swagger](http://swagger.io) documentation and [Postman](https://www.getpostman.com) testing suite is included for your convenience. 
 
 See the documentation for a complete feature list.
 

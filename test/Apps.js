@@ -511,15 +511,17 @@ exports.userQuota = function(test) {
 
 exports.badName = async function(test) {
 
-    let instantiator = await(testUtils.getInstantiator("mongo"));
+    let instantiator = await(testUtils.getInstantiator());
     let p = new AppStorage(instantiator.services.storage);
     await(p.init(instantiator));
 
     // reset quota from previous runs if changed
     await(p.changeQuota("Jake", settings.system.userAppQuota));
-    await(p.addUserApp("Jake", "q1", "my app"));
+    test.throws(function() {
+        await(p.addUserApp("Jake", "q1", "my app"));
+    }, Error, "Space is not ok in an app name.");
     let owns = await(p.userOwnsApp("Jake", "q1"));
-    test.ok(owns);
+    test.ok(!owns);
     test.done();
 
 };

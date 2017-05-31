@@ -1,0 +1,1992 @@
+{
+	"variables": [],
+	"info": {
+		"name": "Qwiery REST API",
+		"_postman_id": "ebd57fe6-b79f-411c-8d67-2fb1d24aae09",
+		"description": "AI as a service.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "admin",
+			"description": "Aministrative access.",
+			"item": [
+				{
+					"name": "admin/users/all",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"",
+									"console.log(responseBody)",
+									"tests[\"All there\"] = responseBody.length > 0;",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{domain}}/admin/users/all",
+						"method": "GET",
+						"header": [
+							{
+								"key": "apiKey",
+								"value": "lhyY6Ym7Mz",
+								"description": ""
+							}
+						],
+						"body": {},
+						"description": "Fetches all users."
+					},
+					"response": []
+				},
+				{
+					"name": "admin/topics/standard/all",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"",
+									"console.log(responseBody)",
+									"tests[\"All there\"] = responseBody.length > 0;",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{domain}}/admin/topics/standard/all",
+						"method": "GET",
+						"header": [
+							{
+								"key": "apiKey",
+								"value": "lhyY6Ym7Mz",
+								"description": ""
+							}
+						],
+						"body": {},
+						"description": "Fetches all standard topics."
+					},
+					"response": []
+				},
+				{
+					"name": "admin/globalUsage",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"",
+									"tests[\"All there\"] = responseBody.length > 0;",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{domain}}/admin/globalUsage",
+						"method": "GET",
+						"header": [
+							{
+								"key": "apiKey",
+								"value": "lhyY6Ym7Mz",
+								"description": ""
+							}
+						],
+						"body": {},
+						"description": "Fetches the global usage."
+					},
+					"response": []
+				},
+				{
+					"name": "admin/categories",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"",
+									"tests[\"All there\"] = responseBody.length > 0;",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{domain}}/admin/categories",
+						"method": "GET",
+						"header": [
+							{
+								"key": "apiKey",
+								"value": "lhyY6Ym7Mz",
+								"description": ""
+							}
+						],
+						"body": {},
+						"description": "Fetches the categories."
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "api",
+			"description": "Folder for api",
+			"item": [
+				{
+					"name": "test",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"",
+									"console.log(responseBody)",
+									"tests[\"Qwiery\"] = responseBody.indexOf(\"Qwiery\") ===0;",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{domain}}/api/test",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": "A method to test whether Qwiery is up and running."
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "apps",
+			"description": "Folder for apps",
+			"item": [
+				{
+					"name": "apps/isValidAppName",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"",
+									"console.log(responseBody)",
+									"tests[\"Qwiery\"] = responseBody===\"true\";",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{domain}}/apps/isValidAppName/AllesKanBeter",
+						"method": "GET",
+						"header": [
+							{
+								"key": "apiKey",
+								"value": "Sharon",
+								"description": ""
+							}
+						],
+						"body": {},
+						"description": "Returns whether the given name is valid as a name for an application (bot, language understanding etc.). This does not check whether the name is already taken, only whether the name is acceptable (no special characters etc.)."
+					},
+					"response": []
+				},
+				{
+					"name": "apps/addApp",
+					"request": {
+						"url": "{{domain}}/apps/addApp",
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "The app's configuration."
+						},
+						"description": "Adds a new app (bot, language understanding etc.) to Qwiery."
+					},
+					"response": []
+				},
+				{
+					"name": "apps/ask/:appId/:question",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"",
+									"tests[\"Qwiery\"] = responseBody.indexOf(\"Qwiery\") ===0;",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{domain}}/apps/ask/timy/whatever",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "apiKey",
+								"value": "Sharon",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"question\": \"What is life?\"\n}"
+						},
+						"description": "Asks the specified app a question."
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "ask",
+			"description": "Folder for ask",
+			"item": [
+				{
+					"name": "ask/:question",
+					"request": {
+						"url": "{{domain}}/ask/Who%20am%20I",
+						"method": "GET",
+						"header": [
+							{
+								"key": "apiKey",
+								"value": "Sharon",
+								"description": ""
+							}
+						],
+						"body": {},
+						"description": "Ask anything you like."
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "data",
+			"description": "Folder for data",
+			"item": [
+				{
+					"name": "data/grid/:count",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"",
+									"var jsonData = JSON.parse(responseBody);",
+									"",
+									"tests[\"Should be something\"] = jsonData.length===14;"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{domain}}/data/grid/14",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": "Get random people records suitable for a data-grid presentation."
+					},
+					"response": []
+				},
+				{
+					"name": "data/randomNumbers",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"",
+									"var jsonData = JSON.parse(responseBody);",
+									"",
+									"tests[\"Should be something\"] = jsonData.length===56;"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{domain}}/data/randomNumbers/56",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": "Returns the specified amount of random integers in the [1,100] interval."
+					},
+					"response": []
+				},
+				{
+					"name": "data/stock",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"",
+									"var jsonData = JSON.parse(responseBody);",
+									"",
+									"tests[\"Should be something\"] = jsonData.length>0;"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{domain}}/data/stock",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": "Sample (fake) stock data."
+					},
+					"response": []
+				},
+				{
+					"name": "data/population",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"",
+									"var jsonData = JSON.parse(responseBody);",
+									"",
+									"tests[\"Should be something\"] = jsonData.length>0;"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{domain}}/data/population",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": "Population in the USA."
+					},
+					"response": []
+				},
+				{
+					"name": "data/forecast",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{domain}}/data/forecast",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": "Forecast data using R."
+					},
+					"response": []
+				},
+				{
+					"name": "data/plot",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{domain}}/data/plot",
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "array of data points"
+						},
+						"description": "Plots the given data array."
+					},
+					"response": []
+				},
+				{
+					"name": "data/kafka",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"tests[\"Should be something\"] = responseBody.length > 0;"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{domain}}/data/kafka",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": "Returns a paragraph from Kafka's Metamorphosis."
+					},
+					"response": []
+				},
+				{
+					"name": "data/dracula",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"tests[\"Should be something\"] = responseBody.length > 0;"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{domain}}/data/dracula",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": "Returns a paragraph from Bram Stoker's Dracula."
+					},
+					"response": []
+				},
+				{
+					"name": "data/ulysses",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"tests[\"Should be something\"] = responseBody.length > 0;"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{domain}}/data/ulysses",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": "Returns a paragraph from James Joyce's Ulysses."
+					},
+					"response": []
+				},
+				{
+					"name": "data/bible",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"tests[\"Should be something\"] = responseBody.length > 0;"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{domain}}/data/bible",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": "Returns a paragraph from the Bible."
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "feedback",
+			"description": "Folder for feedback",
+			"item": [
+				{
+					"name": "feedback",
+					"request": {
+						"url": "{{domain}}/feedback",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "apiKey",
+								"value": "Sharon",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"feedback\":{\n\t\t\"user\": \"Postman\",\n\t\t\"comments\":\"Just testing things.\"\n\t}\n}"
+						},
+						"description": "Sends feedback about Qwiery and its various services and apps."
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "flows",
+			"description": "Methods related to workflows.",
+			"item": [
+				{
+					"name": "No initial state ",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 500\"] = responseCode.code === 500;",
+									"tests[\"Should return an id\"] = responseBody.indexOf(\"No initial state\")===0;"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{domain}}/flows/addDummy",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\n\t\"flow\":{\n\t\t\t\"name\":\"\",\n\t\t\t\"States\":[{\n\t\t\t\t\"name\":\"1\"\n\t\t\n\t\t\t\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"name\":\"2\",\n\t\t\t\t\t\"isFinal\": true\n\t\t\t}]\n\t}\n}"
+						},
+						"description": "Add dummy flow but missing an initial state."
+					},
+					"response": []
+				},
+				{
+					"name": "Id is returned",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"var jsonData = JSON.parse(responseBody);",
+									"tests[\"Should return an id\"] = jsonData.id!==undefined;"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{domain}}/flows/addDummy",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\n\t\"flow\":{\n\t\t\t\"name\":\"\",\n\t\t\t\"States\":[{\n\t\t\t\t\"name\":\"1\",\n\t\t\t\t\"isInitial\": true,\n\t\t\t\t\"isFinal\": true\n\t\t\t}]\n\t}\n}"
+						},
+						"description": "The id of the saved flow is returned."
+					},
+					"response": []
+				},
+				{
+					"name": "Add dummy",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"var jsonData = JSON.parse(responseBody);",
+									"tests[\"Should return an id\"] = jsonData.id!==undefined;"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{domain}}/flows/addDummy",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n   \"flow\": {\n      \"Name\": \"Guess the number\",\n      \"States\": [\n         {\n            \"name\": \"Guess\",\n            \"type\": \"CheckAnswer\",\n            \"isInitial\": true,\n            \"activationMessage\": \"Gimme the right number\",\n            \"acceptMessage\": \"Yeah!\",\n            \"rejectMessage\": \"Wrong guess\",\n            \"expectedAnswer\": \"123\"\n         },\n         {\n            \"name\": \"Found\",\n            \"type\": \"YesNo\",\n            \"activationMessage\": \"That was fun :) Do you want to have another go?\"\n         },\n         {\n            \"name\": \"Nope\",\n            \"type\": \"QA\",\n            \"isFinal\": true,\n            \"activationMessage\": \"OK. No prob.\"\n         }\n      ],\n      \"Transitions\": [\n         {\n            \"from\": \"Guess\",\n            \"to\": \"Found\",\n            \"value\": true\n         },\n         {\n            \"from\": \"Found\",\n            \"to\": \"Nope\",\n            \"value\": false\n         },\n         {\n            \"from\": \"Found\",\n            \"to\": \"Guess\",\n            \"value\": true\n         }\n      ]\n   }\n}"
+						},
+						"description": "Adds a dummy flow."
+					},
+					"response": []
+				},
+				{
+					"name": "Speak to dummy",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"var jsonData = JSON.parse(responseBody);",
+									"tests[\"Should return an answer\"] = jsonData.answer!==undefined && jsonData.answer.length>0;"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{domain}}/flows/runDummy",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"specs\":{\n\t\"workflowId\":\"Vf3uTfUQ7I\",\n\t\"input\":\"Nope\"\n}\n}"
+						},
+						"description": "Speaks we a dummy flow."
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "graph",
+			"description": "Folder for graph",
+			"item": [
+				{
+					"name": "graph/entity/upsert",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"",
+									"var jsonData = JSON.parse(responseBody);",
+									"",
+									"tests[\"Id\"] = jsonData.Id!==undefined && jsonData.Id!==null;",
+									" "
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{domain}}/graph/entity/upsert",
+						"method": "POST",
+						"header": [
+							{
+								"key": "apiKey",
+								"value": "{{apiKey}}",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"entity\":{\n\"Title\": \"Hello there\",\n\"Type\":\"Thought\"\n}\n}"
+						},
+						"description": "Upserts a semantic entity in the user's graph."
+					},
+					"response": []
+				},
+				{
+					"name": "graph/entity/upsertMany",
+					"request": {
+						"url": "{{domain}}/graph/entity/upsertMany",
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "the entities to be added"
+						},
+						"description": "Upserts multiple entities to the user's graph."
+					},
+					"response": []
+				},
+				{
+					"name": "graph/entity/get/:id",
+					"request": {
+						"url": {
+							"raw": "http://localhost:4785/graph/entity/get/:id",
+							"protocol": "http",
+							"auth": {},
+							"host": [
+								"localhost"
+							],
+							"port": "4785",
+							"path": [
+								"graph",
+								"entity",
+								"get",
+								":id"
+							],
+							"variable": [
+								{
+									"value": "{{id}}",
+									"id": "id"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {},
+						"description": "Fetches the entity with the given id from the user's graph."
+					},
+					"response": []
+				},
+				{
+					"name": "graph/entity/getMany",
+					"request": {
+						"url": "{{domain}}/graph/entity/getMany",
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "the id to fetch"
+						},
+						"description": "Fetches multiple entities from the user's graph."
+					},
+					"response": []
+				},
+				{
+					"name": "graph/entity/tags/:id",
+					"request": {
+						"url": {
+							"raw": "http://localhost:4785/graph/entity/tags/:id",
+							"protocol": "http",
+							"auth": {},
+							"host": [
+								"localhost"
+							],
+							"port": "4785",
+							"path": [
+								"graph",
+								"entity",
+								"tags",
+								":id"
+							],
+							"variable": [
+								{
+									"value": "{{id}}",
+									"id": "id"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": "Fetches the tags of the entity with the given id."
+					},
+					"response": []
+				},
+				{
+					"name": "graph/entity/delete?id={{id}}",
+					"request": {
+						"url": "{{domain}}/graph/entity/delete?id={{id}}",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": "Deletes the entity with the given id."
+					},
+					"response": []
+				},
+				{
+					"name": "graph/link?fromId={{fromId}}&toId={{toId}}&title={{title}}",
+					"request": {
+						"url": "{{domain}}/graph/link?fromId={{fromId}}&toId={{toId}}&title={{title}}",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": "Connects two entities."
+					},
+					"response": []
+				},
+				{
+					"name": "graph/unlink?fromId={{fromId}}&toId={{toId}}&title={{title}}",
+					"request": {
+						"url": "{{domain}}/graph/unlink?fromId={{fromId}}&toId={{toId}}&title={{title}}",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": "Disconnects two entities."
+					},
+					"response": []
+				},
+				{
+					"name": "graph/entity/related?id={{id}}",
+					"request": {
+						"url": "{{domain}}/graph/entity/related?id={{id}}",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": "Gets the related (neighbors, i.e. parents and children) entities."
+					},
+					"response": []
+				},
+				{
+					"name": "graph/entities/recent",
+					"request": {
+						"url": "{{domain}}/graph/entities/recent",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": "Gets the recently used entities (trail)."
+					},
+					"response": []
+				},
+				{
+					"name": "graph/search?term={{term}}&type={{type}}",
+					"request": {
+						"url": "{{domain}}/graph/search?term={{term}}&type={{type}}",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": "Is the the same as 'search/graph' and is an alias for convenience."
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "language",
+			"description": "Folder for language",
+			"item": [
+				{
+					"name": "language/sentiment",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"",
+									"var jsonData = JSON.parse(responseBody);",
+									"",
+									"tests[\"Tokens\"] = jsonData.tokens.length>0;",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{domain}}/language/sentiment",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "apiKey",
+								"value": "Sharon",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\"text\":\"The family themselves ate in the kitchen.  Nonetheless, Gregor's father came into the living room before he went into the kitchen, bowed once with his cap in his hand and did his round of the table. The gentlemen stood as one, and mumbled something into their beards. Then, once they were alone, they ate in near perfect silence.  It seemed remarkable to Gregor that above all the various noises of eating their chewing teeth could still be heard, as if they had wanted to show Gregor that you need teeth in order to eat and it was not possible to perform anything with jaws that are toothless however nice they might be.  I'd like to eat something, said Gregor anxiously, but not anything like they're eating.  They do feed themselves. And here I am, dying!\"\n}"
+						},
+						"description": "Returns the sentiment out of the given text."
+					},
+					"response": []
+				},
+				{
+					"name": "language/detect",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"",
+									"var jsonData = JSON.parse(responseBody);",
+									"",
+									"tests[\"Original is there\"] = jsonData.original.indexOf(\"Deze site\")===0;",
+									"tests[\"Should be Dutch\"] = jsonData.languages[0].language===\"dutch\";"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{domain}}/language/detect",
+						"method": "POST",
+						"header": [
+							{
+								"key": "apiKey",
+								"value": "Sharon",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\"text\":\"Deze site gebruikt cookies van Google om services te leveren, advertenties te personaliseren en verkeer te analyseren. Informatie over je gebruik van deze site wordt gedeeld met Google. Als je deze site gebruikt, ga je akkoord met het gebruik van cookies.\"\n}"
+						},
+						"description": "Detects the language(s) in the given text."
+					},
+					"response": []
+				},
+				{
+					"name": "language/pos",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"",
+									"var jsonData = JSON.parse(responseBody);",
+									"",
+									"tests[\"Original text\"] = jsonData.original.indexOf(\"This is a\")===0;",
+									"tests[\"POS is present\"] = jsonData.pos.length>0;"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{domain}}/language/pos",
+						"method": "POST",
+						"header": [
+							{
+								"key": "apiKey",
+								"value": "Sharon",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\n\t\"text\":\"This is a dataset for binary sentiment classification containing substantially more data than previous benchmark datasets. We provide a set of 25,000 highly polar movie reviews for training, and 25,000 for testing. There is additional unlabeled data for use as well. Raw text and already processed bag of words formats are provided. See the README file contained in the release for more details.\"\n}"
+						},
+						"description": "Returns part-of speech in the given text."
+					},
+					"response": []
+				},
+				{
+					"name": "language/keywords",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"",
+									"var jsonData = JSON.parse(responseBody);",
+									"",
+									"tests[\"Should be something\"] = jsonData.original.indexOf(\"Lorem ipsum\")===0;"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{domain}}/language/keywords",
+						"method": "POST",
+						"header": [
+							{
+								"key": "apiKey",
+								"value": "Sharon",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\"text\":\"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus a mauris mollis, pellentesque metus nec, fermentum nunc. Nunc tempor maximus erat, faucibus laoreet lorem finibus non. Aenean molestie tellus lacus, elementum porttitor nunc molestie in. Sed sollicitudin lacus eu lectus commodo sagittis. Nulla facilisi. Vivamus vitae nulla blandit, semper lorem non, viverra elit. Nunc maximus tellus vel diam mattis imperdiet. Ut aliquam molestie magna, sit amet euismod neque eleifend at. Vestibulum ut dictum neque. Donec nisl nisi, consequat fermentum ultricies eget, sagittis in ex. Suspendisse dapibus feugiat venenatis. Maecenas rhoncus elit a aliquam porttitor. Phasellus suscipit eget velit eget tincidunt. Sed non euismod nibh, vitae dapibus arcu. Nullam in tortor augue. Ut varius tortor id dapibus fermentum. Donec pretium sed quam ut varius. Vivamus malesuada feugiat mauris nec laoreet. Integer ac suscipit est, non scelerisque lectus. Morbi non massa ut ipsum bibendum malesuada. Integer vitae faucibus sapien. In hac habitasse platea dictumst. Praesent vitae velit augue. Interdum et malesuada fames ac ante ipsum primis in faucibus. Proin sodales nisi vitae iaculis mattis. Pellentesque pretium, dui non interdum ullamcorper, nibh elit consectetur arcu, quis sollicitudin libero nunc eget velit. Etiam vestibulum ex at velit suscipit fermentum et sed ipsum. Duis a sollicitudin turpis. Aliquam in magna tempus, laoreet lorem in, pellentesque dui. Morbi lacinia turpis nec augue condimentum cursus. Ut a blandit urna. Quisque vitae convallis urna. Suspendisse ac congue nisi. Quisque semper egestas quam. Mauris bibendum enim lacus, ut tincidunt ligula vestibulum sed. Mauris et diam convallis, vulputate felis tincidunt, faucibus magna. Sed sollicitudin orci ligula, vel gravida magna malesuada sit amet. Ut imperdiet justo dolor, a pretium purus accumsan nec. Ut lobortis urna a dictum tristique. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Maecenas dignissim nec justo vitae sollicitudin. Vivamus eu laoreet risus, lacinia volutpat felis. Vivamus fermentum et eros et sollicitudin. Nam eget tortor ultrices, luctus erat ac, gravida neque. Sed pulvinar aliquet massa. Praesent varius rhoncus sagittis. Integer maximus quam orci, nec sollicitudin mauris cursus a. Suspendisse ut maximus erat. Pellentesque sit amet urna imperdiet, rhoncus ligula sed, cursus lacus. Mauris nunc purus, pharetra placerat condimentum eu, ultricies vel ligula. Vivamus maximus mauris ut justo feugiat viverra. Nullam semper accumsan gravida. Praesent a tempor massa. Sed convallis quis tortor vel viverra.\"\n}"
+						},
+						"description": "Returns part-of speech in the given text."
+					},
+					"response": []
+				},
+				{
+					"name": "language/lookup",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"",
+									"var jsonData = JSON.parse(responseBody);",
+									"",
+									"tests[\"Should be something\"] = jsonData.length>0"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{domain}}/language/lookup",
+						"method": "POST",
+						"header": [
+							{
+								"key": "apiKey",
+								"value": "Sharon",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"text\":\"aquatic\"\n}"
+						},
+						"description": "Returns the definition of the (first) given word"
+					},
+					"response": []
+				},
+				{
+					"name": "language/randomWords",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"",
+									"var jsonData = JSON.parse(responseBody);",
+									"",
+									"tests[\"Count should be correct\"] = jsonData.length === 6;"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{domain}}/language/randomWords",
+						"method": "POST",
+						"header": [
+							{
+								"key": "apiKey",
+								"value": "Sharon",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"options\":{\n\t\t\"count\": 6\n\t}\n}"
+						},
+						"description": "Returns random (English) words."
+					},
+					"response": []
+				},
+				{
+					"name": "language/getRandomVerbs/:count",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"",
+									"var jsonData = JSON.parse(responseBody);",
+									"",
+									"tests[\"Count should be correct\"] = jsonData.length === 27;",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{domain}}/language/getRandomVerbs/27",
+						"method": "GET",
+						"header": [
+							{
+								"key": "apiKey",
+								"value": "Sharon",
+								"description": ""
+							}
+						],
+						"body": {},
+						"description": "Returns some random verbs."
+					},
+					"response": []
+				},
+				{
+					"name": "language/getRandomNouns/:count",
+					"request": {
+						"url": "{{domain}}/language/getRandomNouns/19",
+						"method": "GET",
+						"header": [
+							{
+								"key": "apiKey",
+								"value": "Sharon",
+								"description": ""
+							}
+						],
+						"body": {},
+						"description": "Returns some random nouns."
+					},
+					"response": []
+				},
+				{
+					"name": "language/getVerbs",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"",
+									"var jsonData = JSON.parse(responseBody);",
+									"",
+									"tests[\"Count should be correct\"] = jsonData.length === 27;",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{domain}}/language/getVerbs/",
+						"method": "POST",
+						"header": [
+							{
+								"key": "apiKey",
+								"value": "Sharon",
+								"description": ""
+							}
+						],
+						"body": {},
+						"description": "Returns the verbs in the given text."
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "lexic",
+			"description": "Folder for lexic",
+			"item": [
+				{
+					"name": "lexic/question",
+					"request": {
+						"url": "{{domain}}/lexic/question",
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "any string you like"
+						},
+						"description": "Ask anything you like."
+					},
+					"response": []
+				},
+				{
+					"name": "lexic/upsert",
+					"request": {
+						"url": "{{domain}}/lexic/upsert",
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "a lexic item"
+						},
+						"description": "Upserts a lexic item."
+					},
+					"response": []
+				},
+				{
+					"name": "lexic/delete/:id",
+					"request": {
+						"url": {
+							"raw": "http://localhost:4785/lexic/delete/:id",
+							"protocol": "http",
+							"auth": {},
+							"host": [
+								"localhost"
+							],
+							"port": "4785",
+							"path": [
+								"lexic",
+								"delete",
+								":id"
+							],
+							"variable": [
+								{
+									"value": "{{id}}",
+									"id": "id"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": "Deletes a lexic record."
+					},
+					"response": []
+				},
+				{
+					"name": "lexic/randomRecord",
+					"request": {
+						"url": "{{domain}}/lexic/randomRecord",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": "Returns a random lexic record."
+					},
+					"response": []
+				},
+				{
+					"name": "lexic/randomQuestion",
+					"request": {
+						"url": "{{domain}}/lexic/randomQuestion",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": "Returns a random question from the lexicon with parameters replaced by random nouns."
+					},
+					"response": []
+				},
+				{
+					"name": "lexic/exists",
+					"request": {
+						"url": "{{domain}}/lexic/exists",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": "Returns a default QTL template."
+					},
+					"response": []
+				},
+				{
+					"name": "lexic/get/:id",
+					"request": {
+						"url": {
+							"raw": "http://localhost:4785/lexic/get/:id",
+							"protocol": "http",
+							"auth": {},
+							"host": [
+								"localhost"
+							],
+							"port": "4785",
+							"path": [
+								"lexic",
+								"get",
+								":id"
+							],
+							"variable": [
+								{
+									"value": "{{id}}",
+									"id": "id"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": "Returns the lexic item with the given id."
+					},
+					"response": []
+				},
+				{
+					"name": "lexic/validate",
+					"request": {
+						"url": "{{domain}}/lexic/validate",
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "a QTL item"
+						},
+						"description": "Validates the given QTL item."
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "profile",
+			"description": "Folder for profile",
+			"item": [
+				{
+					"name": "profile/topics",
+					"request": {
+						"url": "{{domain}}/profile/topics",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": "Returns all the topics the user talke about."
+					},
+					"response": []
+				},
+				{
+					"name": "profile/personalities",
+					"request": {
+						"url": "{{domain}}/profile/personalities",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": "Returns the distribution of personalities the user has."
+					},
+					"response": []
+				},
+				{
+					"name": "profile/personalization/clear/:key",
+					"request": {
+						"url": {
+							"raw": "http://localhost:4785/profile/personalization/clear/:key",
+							"protocol": "http",
+							"auth": {},
+							"host": [
+								"localhost"
+							],
+							"port": "4785",
+							"path": [
+								"profile",
+								"personalization",
+								"clear",
+								":key"
+							],
+							"variable": [
+								{
+									"value": "{{key}}",
+									"id": "key"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": "Removes the given personalization-key."
+					},
+					"response": []
+				},
+				{
+					"name": "profile/personalization/clearAll",
+					"request": {
+						"url": "{{domain}}/profile/personalization/clearAll",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": "Removes all personalization data of the user."
+					},
+					"response": []
+				},
+				{
+					"name": "profile/personalization",
+					"request": {
+						"url": "{{domain}}/profile/personalization",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": "Returns all the personalization data of the user as a dictionary."
+					},
+					"response": []
+				},
+				{
+					"name": "profile/personality",
+					"request": {
+						"url": "{{domain}}/profile/personality",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": "Returns the MBTI distribution the user has."
+					},
+					"response": []
+				},
+				{
+					"name": "profile/trail",
+					"request": {
+						"url": "{{domain}}/profile/trail",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": "Returns the series of entities and data the user has recently accessed."
+					},
+					"response": []
+				},
+				{
+					"name": "profile/history/get/:correlationId",
+					"request": {
+						"url": {
+							"raw": "http://localhost:4785/profile/history/get/:correlationId",
+							"protocol": "http",
+							"auth": {},
+							"host": [
+								"localhost"
+							],
+							"port": "4785",
+							"path": [
+								"profile",
+								"history",
+								"get",
+								":correlationId"
+							],
+							"variable": [
+								{
+									"value": "{{correlationId}}",
+									"id": "correlationId"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": "Returns a specific historical item."
+					},
+					"response": []
+				},
+				{
+					"name": "profile/history/:count",
+					"request": {
+						"url": {
+							"raw": "http://localhost:4785/profile/history/:count",
+							"protocol": "http",
+							"auth": {},
+							"host": [
+								"localhost"
+							],
+							"port": "4785",
+							"path": [
+								"profile",
+								"history",
+								":count"
+							],
+							"variable": [
+								{
+									"value": "{{count}}",
+									"id": "count"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": "Returns the history of the user"
+					},
+					"response": []
+				},
+				{
+					"name": "profile/user",
+					"request": {
+						"url": "{{domain}}/profile/user",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": "Returns the full profile of the user."
+					},
+					"response": []
+				},
+				{
+					"name": "profile/spaces",
+					"request": {
+						"url": "{{domain}}/profile/spaces",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": "Returns info about the workspaces the user owns."
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "search",
+			"description": "Folder for search",
+			"item": [
+				{
+					"name": "search/web?term={{term}}&source={{source}}",
+					"request": {
+						"url": "{{domain}}/search/web?term={{term}}&source={{source}}",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": "Searches the web (using an external provider like Bing, Google...)."
+					},
+					"response": []
+				},
+				{
+					"name": "search/graph?term={{term}}&type={{type}}",
+					"request": {
+						"url": "{{domain}}/search/graph?term={{term}}&type={{type}}",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": "Searches the user's semantic network."
+					},
+					"response": []
+				},
+				{
+					"name": "search/alpha?term={{term}}",
+					"request": {
+						"url": "{{domain}}/search/alpha?term={{term}}",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": "Searches Wolfram Alpha for the given term."
+					},
+					"response": []
+				},
+				{
+					"name": "search/news?term={{term}}",
+					"request": {
+						"url": "{{domain}}/search/news?term={{term}}",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": "Fetches news items from an external provider (Bing, Google...)."
+					},
+					"response": []
+				},
+				{
+					"name": "search/wikipedia?term={{term}}",
+					"request": {
+						"url": "{{domain}}/search/wikipedia?term={{term}}",
+						"method": "GET",
+						"header": [
+							{
+								"key": "apikey",
+								"value": "{{apikey}}",
+								"description": ""
+							}
+						],
+						"body": {},
+						"description": "Searches Wikipedia for the given term."
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "tag",
+			"description": "Folder for tag",
+			"item": [
+				{
+					"name": "tag/entities/:tagName",
+					"request": {
+						"url": {
+							"raw": "http://localhost:4785/tag/entities/:tagName",
+							"protocol": "http",
+							"auth": {},
+							"host": [
+								"localhost"
+							],
+							"port": "4785",
+							"path": [
+								"tag",
+								"entities",
+								":tagName"
+							],
+							"variable": [
+								{
+									"value": "{{tagName}}",
+									"id": "tagName"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": "Gets the entities attached to the given tag."
+					},
+					"response": []
+				},
+				{
+					"name": "tag/entity/:entityId/:tagName",
+					"request": {
+						"url": {
+							"raw": "http://localhost:4785/tag/entity/:entityId/:tagName",
+							"protocol": "http",
+							"auth": {},
+							"host": [
+								"localhost"
+							],
+							"port": "4785",
+							"path": [
+								"tag",
+								"entity",
+								":entityId",
+								":tagName"
+							],
+							"variable": [
+								{
+									"value": "{{entityId}}",
+									"id": "entityId"
+								},
+								{
+									"value": "{{tagName}}",
+									"id": "tagName"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": "Adds the given tag name from the given entity id."
+					},
+					"response": []
+				},
+				{
+					"name": "tag/all",
+					"request": {
+						"url": "{{domain}}/tag/all",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": "Returns all the tag names."
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "tags",
+			"description": "Folder for tags",
+			"item": [
+				{
+					"name": "tags/agenda",
+					"request": {
+						"url": "{{domain}}/tags/agenda",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": "Gets your agenda (collection of appointments)."
+					},
+					"response": []
+				},
+				{
+					"name": "tags/tasks",
+					"request": {
+						"url": "{{domain}}/tags/tasks",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": "Gets your tasks (collection of Task items)."
+					},
+					"response": []
+				},
+				{
+					"name": "tags/thoughts",
+					"request": {
+						"url": "{{domain}}/tags/thoughts",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": "Gets your thoughts or ideas (collection of Thought items)."
+					},
+					"response": []
+				},
+				{
+					"name": "tags/addresses",
+					"request": {
+						"url": "{{domain}}/tags/addresses",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": "Gets your addresses (collection of Address items)."
+					},
+					"response": []
+				},
+				{
+					"name": "tags/people",
+					"request": {
+						"url": "{{domain}}/tags/people",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": "Gets the Person entities (collection of Person items)."
+					},
+					"response": []
+				},
+				{
+					"name": "tags/favorites/add/:id",
+					"request": {
+						"url": {
+							"raw": "http://localhost:4785/tags/favorites/add/:id",
+							"protocol": "http",
+							"auth": {},
+							"host": [
+								"localhost"
+							],
+							"port": "4785",
+							"path": [
+								"tags",
+								"favorites",
+								"add",
+								":id"
+							],
+							"variable": [
+								{
+									"value": "{{id}}",
+									"id": "id"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": "Adds the entity with the given id to the favorites collection."
+					},
+					"response": []
+				},
+				{
+					"name": "tags/favorites/remove/:id",
+					"request": {
+						"url": {
+							"raw": "http://localhost:4785/tags/favorites/remove/:id",
+							"protocol": "http",
+							"auth": {},
+							"host": [
+								"localhost"
+							],
+							"port": "4785",
+							"path": [
+								"tags",
+								"favorites",
+								"remove",
+								":id"
+							],
+							"variable": [
+								{
+									"value": "{{id}}",
+									"id": "id"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": "Removes the entity with the given id from the favorites collection."
+					},
+					"response": []
+				},
+				{
+					"name": "tags/favorites/contains/:id",
+					"request": {
+						"url": {
+							"raw": "http://localhost:4785/tags/favorites/contains/:id",
+							"protocol": "http",
+							"auth": {},
+							"host": [
+								"localhost"
+							],
+							"port": "4785",
+							"path": [
+								"tags",
+								"favorites",
+								"contains",
+								":id"
+							],
+							"variable": [
+								{
+									"value": "{{id}}",
+									"id": "id"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": "Returns whether the entity with the given id is a favorite."
+					},
+					"response": []
+				},
+				{
+					"name": "tags/favorites/all",
+					"request": {
+						"url": "{{domain}}/tags/favorites/all",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": "Returns all the fovorites."
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "untag",
+			"description": "Folder for untag",
+			"item": [
+				{
+					"name": "untag/entity/:entityId/:tagName",
+					"request": {
+						"url": {
+							"raw": "http://localhost:4785/untag/entity/:entityId/:tagName",
+							"protocol": "http",
+							"auth": {},
+							"host": [
+								"localhost"
+							],
+							"port": "4785",
+							"path": [
+								"untag",
+								"entity",
+								":entityId",
+								":tagName"
+							],
+							"variable": [
+								{
+									"value": "{{entityId}}",
+									"id": "entityId"
+								},
+								{
+									"value": "{{tagName}}",
+									"id": "tagName"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": "Removes the given tag name from the given entity id."
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "wikipedia",
+			"description": "Folder for wikipedia",
+			"item": [
+				{
+					"name": "wikipedia/get",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"",
+									"var jsonData = JSON.parse(responseBody);",
+									"",
+									"tests[\"Should be something\"] = jsonData.title===\"Physics\";"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{domain}}/wikipedia/get/Physics",
+						"method": "GET",
+						"header": [
+							{
+								"key": "apiKey",
+								"value": "Sharon",
+								"description": ""
+							}
+						],
+						"body": {},
+						"description": "Fetches the specified Wikipedia page. Note that the requested page name is case-sensitive."
+					},
+					"response": []
+				},
+				{
+					"name": "wikipedia/image/:page",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"tests[\"Should be something\"] = responseBody.length>0;"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{domain}}/wikipedia/image/Physics",
+						"method": "GET",
+						"header": [
+							{
+								"key": "apiKey",
+								"value": "Sharon",
+								"description": ""
+							}
+						],
+						"body": {},
+						"description": "Fetches the main image from the specified page name. Note that the requested page name is case-sensitive."
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

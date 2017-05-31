@@ -496,7 +496,7 @@ exports.questionArray = function(test) {
 exports.detectLanguage = function(test) {
     const q = new Qwiery();
     q.ask("Dit is gewoon goed gemaakt").then(function(session) {
-        test.equal(Qwiery.Language, "dutch");
+        test.equal(session.Language, "dutch");
         test.done();
     });
 };
