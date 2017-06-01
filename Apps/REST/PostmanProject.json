@@ -154,7 +154,7 @@
 									"tests[\"Status code is 200\"] = responseCode.code === 200;",
 									"",
 									"console.log(responseBody)",
-									"tests[\"Qwiery\"] = responseBody.indexOf(\"Qwiery\") ===0;",
+									"tests[\"Qwiery\"] = responseBody.indexOf(\"Qwiery\") >=0;",
 									""
 								]
 							}
@@ -709,7 +709,7 @@
 			"description": "Folder for graph",
 			"item": [
 				{
-					"name": "graph/entity/upsert",
+					"name": "entity/upsert",
 					"event": [
 						{
 							"listen": "test",
@@ -743,7 +743,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\"entity\":{\n\"Title\": \"Hello there\",\n\"Type\":\"Thought\"\n}\n}"
+							"raw": "{\"entity\":{\n\"Title\": \"Hello there\",\n\"Id\":\"SomethingToBeReused\",\n\"Type\":\"Thought\"\n}\n}"
 						},
 						"description": "Upserts a semantic entity in the user's graph."
 					},
@@ -751,44 +751,67 @@
 				},
 				{
 					"name": "graph/entity/upsertMany",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"",
+									"var jsonData =  JSON.parse(responseBody);",
+									"console.log(\">>\" +jsonData.length );",
+									"tests[\"Contains ids\"] = jsonData.length===1;"
+								]
+							}
+						}
+					],
 					"request": {
 						"url": "{{domain}}/graph/entity/upsertMany",
 						"method": "POST",
-						"header": [],
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "apiKey",
+								"value": "{{apiKey}}",
+								"description": ""
+							}
+						],
 						"body": {
 							"mode": "raw",
-							"raw": "the entities to be added"
+							"raw": "{\"entities\":[\n\t{\n\t\t\"Title\": \"Q 1.3\",\n\t\t\"Type\": \"Version\"\n\t\t\n\t}\n\t]}"
 						},
 						"description": "Upserts multiple entities to the user's graph."
 					},
 					"response": []
 				},
 				{
-					"name": "graph/entity/get/:id",
+					"name": "entity/get/:id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									"tests[\"Your test name\"] = jsonData.DataType === \"Thought\";"
+								]
+							}
+						}
+					],
 					"request": {
-						"url": {
-							"raw": "http://localhost:4785/graph/entity/get/:id",
-							"protocol": "http",
-							"auth": {},
-							"host": [
-								"localhost"
-							],
-							"port": "4785",
-							"path": [
-								"graph",
-								"entity",
-								"get",
-								":id"
-							],
-							"variable": [
-								{
-									"value": "{{id}}",
-									"id": "id"
-								}
-							]
-						},
-						"method": "POST",
-						"header": [],
+						"url": "http://localhost:4785/graph/entity/get/SomethingToBeReused",
+						"method": "GET",
+						"header": [
+							{
+								"key": "apiKey",
+								"value": "{{apiKey}}",
+								"description": ""
+							}
+						],
 						"body": {},
 						"description": "Fetches the entity with the given id from the user's graph."
 					},
@@ -825,6 +848,7 @@
 								"tags",
 								":id"
 							],
+							"query": [],
 							"variable": [
 								{
 									"value": "{{id}}",
@@ -1287,6 +1311,7 @@
 								"delete",
 								":id"
 							],
+							"query": [],
 							"variable": [
 								{
 									"value": "{{id}}",
@@ -1350,6 +1375,7 @@
 								"get",
 								":id"
 							],
+							"query": [],
 							"variable": [
 								{
 									"value": "{{id}}",
@@ -1423,6 +1449,7 @@
 								"clear",
 								":key"
 							],
+							"query": [],
 							"variable": [
 								{
 									"value": "{{key}}",
@@ -1498,6 +1525,7 @@
 								"get",
 								":correlationId"
 							],
+							"query": [],
 							"variable": [
 								{
 									"value": "{{correlationId}}",
@@ -1528,6 +1556,7 @@
 								"history",
 								":count"
 							],
+							"query": [],
 							"variable": [
 								{
 									"value": "{{count}}",
@@ -1653,6 +1682,7 @@
 								"entities",
 								":tagName"
 							],
+							"query": [],
 							"variable": [
 								{
 									"value": "{{tagName}}",
@@ -1684,6 +1714,7 @@
 								":entityId",
 								":tagName"
 							],
+							"query": [],
 							"variable": [
 								{
 									"value": "{{entityId}}",
@@ -1791,6 +1822,7 @@
 								"add",
 								":id"
 							],
+							"query": [],
 							"variable": [
 								{
 									"value": "{{id}}",
@@ -1822,6 +1854,7 @@
 								"remove",
 								":id"
 							],
+							"query": [],
 							"variable": [
 								{
 									"value": "{{id}}",
@@ -1853,6 +1886,7 @@
 								"contains",
 								":id"
 							],
+							"query": [],
 							"variable": [
 								{
 									"value": "{{id}}",
@@ -1901,6 +1935,7 @@
 								":entityId",
 								":tagName"
 							],
+							"query": [],
 							"variable": [
 								{
 									"value": "{{entityId}}",

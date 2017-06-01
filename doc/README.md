@@ -1,18 +1,47 @@
 
 ![Qwiery](http://www.qwiery.com/QwieryLogoSmall.png)
 
-Qwiery is a generic cognitive agent architecture for text-based user interfaces. In simple terms: it allows you to assemble modules which together interprete text input (questions) and formulate an appropriate answer. In a narrow sense, it allows you to create bots. In a broader sense, it has cognitive modules to emulate emotions, memory, personalization, personality and learning capabilities. The plugin architecture allows you to assemble and customize the beahvior in function of your (business) aims.
+Qwiery is **a symbolic cognitive architecture for building agents, text-based user interfaces and cognitive pipelines** in general. It's a constuctive approach to cognitive computing and computational knowledge based on a modular system (plugins) with a focus on NLP-oriented interactions but allows a wide range of scenarios, including hybrid combinations of technologies (Python, R, Neo4j...) and approaches (neural networks, machine learning...).
+
+The framework can articulate bots, utterance-intend interactions, REST services, HTML output and is an **engine** focused on processing interactions rather than a particular IO channel. It's written in JavaScript (**NodeJS**) and as such favors some constructs like Express, JSON and HTML but through the flexibility of NodeJS allows easy integration with XML, Python and whatnot. 
+
+Below you can find pointers to various documents which can help to get the most out of Qwiery.
 
 
+**Overview**
 
-Please read the following manuals to get started:
+- [Getting started]{@tutorial GettingStarted}
+- [Architecture overview]{@tutorial Highlevel}
+- [Features]{@tutorial Features}
+- [Requirements]{@tutorial Requirements}
 
-- [Configuration]{@tutorial Configuration}
-- [Graph format]{@tutorial GraphDBFormat}
-- [Mongo sample database]{@tutorial MongoDatabase}
+**Tutorials**
+
+- [Ask confirmation]{@tutorial How_AskConfirmation}
+- [Custom workflow state]{@tutorial How_CustomState}
+- [How to store stuff]{@tutorial How_StoreThings}
+
+**Basics**
+
 - [Plugins]{@tutorial Plugins}
+- [Pods]{@tutorial Pods}
+- [Alias]{@tutorial Alias}
+- [Apps]{@tutorial Apps}
+- [Commands]{@tutorial Commands}
+- [Configuration]{@tutorial Configuration}
+- [Mongo database]{@tutorial MongoDatabase}
 - [Templates]{@tutorial Templates}
 - [Topics]{@tutorial Topics}
-- [Workflows]{@tutorial Workflows}
+
+**Advanced**
+
+- [Ask]{@tutorial Ask}
+- [Graph format]{@tutorial GraphDBFormat}
 - [Personalization]{@tutorial Personalization}
-- [Ask confirmation]{@tutorial How_AskConfirmation}
+- [Session]{@tutorial Session}
+- [Storage]{@tutorial Storage}
+- [Trace]{@tutorial Trace}
+- [Workflows]{@tutorial Workflows}
+- [WorkflowState]{@tutorial WorkflowState}
+
+

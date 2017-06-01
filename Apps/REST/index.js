@@ -3,8 +3,7 @@ const path = require('path'),
     cors = require('cors'),
     fs = require('fs-extra'),
     _ = require("lodash"),
-    Qwiery = require("../../lib")
-    ;
+    Qwiery = require("../../lib")    ;
 let template = null;
 
 process.on('uncaughtException', function(err) {
@@ -29,14 +28,14 @@ let HOST;
 if(false) {
     // In case you want SSL, this is the kinda code you'll need.
     // See here (among other) for more info https://github.com/andrewconnell/generator-nodehttps/blob/master/docs/setup-https.md
-    var https_options = {
+    const https_options = {
         key: fs.readFileSync(__dirname + '/Data/Certificates/ssl-key.pem'),
         cert: fs.readFileSync(__dirname + '/Data/Certificates/ssl-cert.pem')
     };
 
     PORT = 8443;
     HOST = 'localhost';
-    var server = https.createServer(https_options, app).listen(PORT, HOST);
+    const server = https.createServer(https_options, app).listen(PORT, HOST);
     console.log('+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+');
     console.log('HTTPS Server listening @ https://%s:%s', HOST, PORT);
     console.log('+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+');
@@ -64,7 +63,7 @@ const options = {
         basePath: '/', // Base path (optional)
     },
 
-    apis: ['./API/*.js'],
+    apis: [path.join(__dirname, './API/Qwiery.API.js')],
 };
 
 // Initialize swagger-jsdoc -> returns validated swagger spec in json format
@@ -78,18 +77,6 @@ app.get('/swagger.json', function(req, res) {
     res.setHeader('Content-Type', 'application/json');
     res.send(fs.readJsonSync(path.join(__dirname, "swagger.json")));
 });
-//
-// app.get('/Dashboard/doc/:name', function(req, res) {
-//     var name = req.params.name;
-//
-//     var filePath = path.join(__dirname, "../docs", name + ".md");
-//     if(fs.existsSync(filePath)) {
-//         res.send(fs.readFileSync(filePath, 'utf8'));
-//     }
-//     else {
-//         res.status(404).send("Document does not exist.");
-//     }
-// });
 
 const qwiery = new Qwiery();
 require('./API/Qwiery.API.js')(app, qwiery);
@@ -121,7 +108,7 @@ function getTemlate() {
 app.use("*", function(req, res) {
 
 
-    var file;
+    let file;
     if(req.params[0] === "/") {
         const MarkdownIt = require('markdown-it');
         const md = new MarkdownIt();
@@ -132,29 +119,10 @@ app.use("*", function(req, res) {
         return;
     }
 
-    else if(req.params[0].toLowerCase().indexOf("/dashboard/apidocs") === 0) {
-        var pageName = req.params[0].substring(19).trim().toLowerCase();
-        if(pageName.length === 0 || pageName === "index") {
-            res.render('APIDocs/index');
-            return;
-        } else {
-            file = req.params[0];
-            var filePath = path.join(__dirname, "../Dashboard/Views/APIDocs/", pageName);
-            fs.exists(filePath, function(exists) {
-                if(exists) {
-                    res.sendFile(filePath);
-                } else {
-                    res.status(404).send("The file or service '" + file + "'does not exist.");
-                }
-            })
-            return;
-        }
-    }
-
     else {
         file = req.params[0];
     }
-    var filePath = path.join(__dirname, "../", file);
+    const filePath = path.join(__dirname, "../", file);
     fs.exists(filePath, function(exists) {
         if(exists) {
             res.sendFile(filePath);
@@ -183,7 +151,7 @@ app.use("*", function(req, res) {
  * */
 
 if(process.env.Platform === "Azure") {
-    var http = require('http');
+    const http = require('http');
     app.set('port', process.env.PORT || 3000);
     http.createServer(app).listen(app.get('port'), function() {
         console.log("Express server listening on port " + app.get('port'));

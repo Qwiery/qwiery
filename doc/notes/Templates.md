@@ -143,5 +143,5 @@ By specifying an oracle member you overrule the access to templates in the backe
 
 Topics define subjects being discussed and have an effect on recalling previous discussions, emotional state and personality. More details about topics can be found [in the Topics document]{@tutorial Topics}
 
-## Template members
+ 
 
