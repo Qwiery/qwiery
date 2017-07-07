@@ -50,6 +50,7 @@ const qwiery = new Qwiery({
             "Oracle",
             "Pipeline",
             "Personalization",
+            "Personality",
             "Topics"],
         coreInterpreters: [
             "Alias",
@@ -308,8 +309,8 @@ exports.whoareyou = function(test) {
             test.ok(utils.isDefined(found), "The topic was found.");
 
             if(utils.isDefined(personality)) {
-                personality.getUserPersonality(ctx).then(function(pers) {
-                    test.ok(utils.isDefined(pers["Curious"]), "The personality was found.");
+                personality.getPersonalityValue("Curious", ctx).then(function(count) {
+                    test.ok(count > 0, "The personality was found.");
                     test.done();
                 });
             } else {
@@ -327,9 +328,8 @@ exports.thepersonality = function(test) {
             let found = _.find(topics, {Type: "personality"});
             test.ok(utils.isDefined(found), "The perso was found.");
             if(utils.isDefined(personality)) {
-                personality.getUserPersonality(ctx).then(function(pers) {
-                    found = _.find(pers, {Type: perso});
-                    test.ok(utils.isDefined(pers[perso]), "The personality was found.");
+                personality.getPersonalityValue(perso, ctx).then(function(count) {
+                    test.ok(count > 0, "The personality was found.");
                     test.done();
                 });
             } else {

@@ -3,34 +3,34 @@ const Qwiery = require("../lib"),
     path = require("path"),
     _ = require('lodash');
 
-
-exports.aha = function(test) {
-    const qwiery = new Qwiery(
-        {
-            defaultApp: "MyApp",
-            apps: [
-                {
-                    name: "MyApp",
-                    id:"MyApp",
-                    pipeline: [
-                        {
-                            processMessage: function(session, context) {
-                                context.services.unknowns.inspect(session.Input.Raw);
-                                return session;
-                            }
-                        }
-                    ]
-                }
-            ],
-            plugins: [
-                "Unknowns"
-            ]
-        }
-    );
-    qwiery.ask("The legendary king of Scotland was an abricedarity.", {return: "plain"}).then(function() {
-        test.done();
-    });
-};
+//
+// exports.aha = function(test) {
+//     const qwiery = new Qwiery(
+//         {
+//             defaultApp: "MyApp",
+//             apps: [
+//                 {
+//                     name: "MyApp",
+//                     id:"MyApp",
+//                     pipeline: [
+//                         {
+//                             processMessage: function(session, context) {
+//                                 context.services.unknowns.inspect(session.Input.Raw);
+//                                 return session;
+//                             }
+//                         }
+//                     ]
+//                 }
+//             ],
+//             plugins: [
+//                 "Unknowns"
+//             ]
+//         }
+//     );
+//     qwiery.ask("The legendary king of Scotland was an abricedarity.", {return: "plain"}).then(function() {
+//         test.done();
+//     });
+// };
 
 // exports.dummy = function(test) {
 //
