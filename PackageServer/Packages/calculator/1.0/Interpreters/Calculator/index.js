@@ -1,4 +1,3 @@
-
 const
     Qwiery = require("qwiery"),
     InterpreterBase = Qwiery.InterpreterBase,
@@ -13,13 +12,14 @@ class Calculator extends InterpreterBase {
     constructor() {
         super("calculator");
     }
+
     processMessage(session) {
-        if (session.Handled) {
+        if(session.Handled) {
             return session;
         }
         const question = session.Input.Raw;
         // the math module returns its version if you do eval("version").
-        if (utils.isDefined(question.match(/^version\s?/gi))) {
+        if(utils.isDefined(question.match(/^version\s?/gi))) {
             return session;
         }
         // see http://mathjs.org/download.html
@@ -29,17 +29,21 @@ class Calculator extends InterpreterBase {
         // }
         try {
             const works = math.eval(question);
-            if (_.isFunction(works)) { // e.g. evaluating "help" returns a function
+            if(_.isFunction(works)) { // e.g. evaluating "help" returns a function
                 return session;
             }
-            
+
             session.Output.Answer = [{
                 "Content": works.toString(),
                 "DataType": "Text"
             }];
             session.Handled = true;
-            session.Trace.push({ "Calculator": "Eval did it." })
-        } catch (e) {
+            session.Trace.push({
+                "Module": "Calculator",
+                "What": "Interpreted input as maths.",
+                "Calculator": "Eval did it."
+            })
+        } catch(e) {
             //
         }
         return session;

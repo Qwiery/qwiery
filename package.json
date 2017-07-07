@@ -1,7 +1,7 @@
 {
   "name": "qwiery",
-  "version": "1.6.1",
-  "_versionDate": "June 1, 2017",
+  "version": "1.6.2",
+  "_versionDate": "July 1, 2017",
   "_serviceUrl": "http://api.qwiery.com",
   "main": "lib/index.js",
   "author": {
