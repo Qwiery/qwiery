@@ -23,8 +23,8 @@ exports.between = function(test) {
     let d2 = d[1];
     test.equal(d1.text, "January 21st");
     test.equal(d2.text, "March 2nd");
-    test.equal(d1.date.toDateString(), new Date(2017, 0, 21).toDateString());
-    test.equal(d2.date.toDateString(), new Date(2017, 2, 2).toDateString());
+    test.equal(d1.date.toDateString(), new Date(2019, 0, 21).toDateString());
+    test.equal(d2.date.toDateString(), new Date(2019, 2, 2).toDateString());
     test.done();
 };
 
@@ -48,8 +48,8 @@ exports.pm = function(test) {
 
 exports.hour = function(test) {
     let d = Datetime.parse("It's now 15:45");
-    test.equal(d.length, 1);
-    test.equal(d[0].date.toDateString(), new Date().toDateString());
-    console.log(d[0].date.toLocaleString());
+    test.equal(d.length, 2);
+    test.equal(d[1].date.toDateString(), new Date().toDateString());
+    console.log(d[1].date.toLocaleString());
     test.done();
 };

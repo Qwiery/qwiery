@@ -1,7 +1,7 @@
 {
   "name": "qwiery",
-  "version": "1.6.2",
-  "_versionDate": "July 1, 2017",
+  "version": "1.6.3",
+  "_versionDate": "January 1, 2019",
   "_serviceUrl": "http://api.qwiery.com",
   "main": "lib/index.js",
   "author": {
@@ -53,7 +53,7 @@
     "markdown-it": "^8.3.1",
     "mathjs": "^3.11.5",
     "moment": "^2.18.1",
-    "mongoose": "^4.9.4",
+    "mongoose": "^5.4.2",
     "node-tldr": "^0.4.14",
     "path": "^0.12.7",
     "pos": "^0.4.2",

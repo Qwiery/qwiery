@@ -174,7 +174,7 @@ exports.validatePlugins = function(test) {
 
     const set14 = {
         plugins: [{
-            path: "/anaconda"
+            path: "/Users/Swa/conda"
         }]
     };
     try {

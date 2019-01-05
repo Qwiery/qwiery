@@ -49,8 +49,8 @@ exports.getJsonPath = function(test) {
 };
 
 exports.getSiteTitle = function(test) {
-    utils.getSiteTitle("http://www.qwiery.com").then(function(s) {
-        test.equal(s, "Qwiery – Think. Listen. Understand.");
+    utils.getSiteTitle("http://www.orbifold.net").then(function(s) {
+        test.equal(s, "Orbifold Consulting – Deep Understanding at Your Service");
         utils.getSiteTitle("stuff").then(function(s) {
             test.equal(s, "stuff");
             test.done();

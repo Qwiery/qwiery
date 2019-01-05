@@ -521,7 +521,7 @@ exports.dateParsing = function(test) {
     const qwiery = new Qwiery();
     qwiery.ask("I leave for Paris on the 22nd of March.", {userId: "Sharon"}).then(function(s) {
         test.ok(s.Dates.length > 0);
-        test.equal(s.Dates[0].date.toDateString(), new Date(2017, 2, 22).toDateString());
+        test.equal(s.Dates[0].date.toDateString(), new Date(2019, 2, 22).toDateString());
         test.done();
     });
 };

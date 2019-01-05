@@ -107,6 +107,7 @@ exports.date = function(test) {
     test.expect(1);
     helper.qa("what is the current date", ctx, qwiery).then(function(answer) {
         test.ok(answer.indexOf("It's") > -1);
+        console.log(answer);
         test.done();
     });
 };
