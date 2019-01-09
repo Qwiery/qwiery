@@ -1,5 +1,5 @@
 
-![Qwiery](http://www.qwiery.com/QwieryLogoSmall.png)
+![Qwiery](http://www.orbifold.net/QwieryLogoSmall.png)
 
 Qwiery is **a symbolic cognitive architecture for building agents, text-based user interfaces and cognitive pipelines** in general. It's a constuctive approach to cognitive computing and computational knowledge based on a modular system (plugins) with a focus on NLP-oriented interactions but allows a wide range of scenarios, including hybrid combinations of technologies (Python, R, Neo4j...) and approaches (neural networks, machine learning...).
 

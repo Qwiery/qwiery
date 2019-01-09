@@ -1,5 +1,5 @@
 
-![Qwiery](http://www.qwiery.com/QwieryLogoSmall.png)
+![Qwiery](http://www.orbifold.net/QwieryLogoSmall.png)
 
 Qwiery is **a symbolic cognitive architecture for building agents, text-based user interfaces and cognitive pipelines** in general. It's a constuctive approach to cognitive computing and computational knowledge based on a modular system (plugins) with a focus on NLP-oriented interactions but allows a wide range of scenarios, including hybrid combinations of technologies (Python, R, Neo4j...) and approaches (neural networks, machine learning...).
 
@@ -21,7 +21,7 @@ See the documentation for a complete feature list.
 
 It should be emphasized that Qwiery **does not exclude deep learning, supervised machine learning and reinforcement learning**. The framework allows one to include deep learning models as interpreters and Qwiery can be used to train models through interactions. The plugin system and the agent pipelines are a way to organize and integrate multiple processes (possibly in parallel) with a slight emphasis on NLP, but you are free to inject things in whatever way you see fit.  
 
-**Installation**
+# Setup
 
     npm i qwiery
     
@@ -37,17 +37,33 @@ and run it with
 to see a basic REPL interface to Qwiery. There are many other ways you can use it, see the documentation for more.    
     
 
-**Support and feedback**
+# Support and feedback
+
 - [Twitter](https://twitter.com/qwiery)
 - [info@qwiery.com](mailto:info@qwiery.com)
 - [Github](https://github.com/qwiery)
 - [Official Qwiery site](http://www.qwiery.com)
 - [Orbifold Consulting](http://www.orbifold.net)
 
-**References:**
+# References
 
 - [SOAR cognitive architecture](https://en.wikipedia.org/wiki/Soar_(cognitive_architecture))
 - [Artificial Cognitive Systems](http://vernon.eu/ACS/ACS_03.pdf)
 - [Deep learning](https://github.com/HFTrader/DeepLearningBook)
 - [A Review of 40 Years of Cognitive Architecture Research](https://arxiv.org/pdf/1610.08602.pdf)
 
+# Documentation
+
+Qwiery's code is highly documented and the `doc\notes` directory also contains plenty of extra information. To compile the documentation use
+
+    npm run docs
+    
+or explicitly
+
+    jsdoc -c ./jsdoc.json
+    
+and it will create a comprehensive site of both the API and the notes. 
+
+The configuration of JSDOC sits in the `jsdoc.json` file in the root of the solution.
+
+The template to render the site is [the clean Minami](https://github.com/nijikokun/minami) but you can find lots of alternatives. The [jsdoc documentation](http://usejsdoc.org/about-configuring-default-template.html) explains in details how to configure things.         
