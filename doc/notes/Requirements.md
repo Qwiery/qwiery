@@ -20,15 +20,14 @@ and all test can be executed inside the qwiery-directory via
        
        npm run test
        
-Coverage makes use of [the istanbul module](https://github.com/gotwarlost/istanbul)    
+Coverage makes use of [the nyc module](https://github.com/istanbuljs/nyc)    
    
-    npm install -g istanbul
+    nyc nodeunit
     
 and just like the unit test you can use
     
     npm run cover
     
 to see that something **70%** of the code is covered by unit tests.    
-   
    
    
