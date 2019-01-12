@@ -271,26 +271,20 @@ exports.replaceInPath = function (test) {
     test.done();
 };
 
-exports.systemVariable = function (test) {
-    const that = this;
+exports.systemVariable = async function (test) {
+    let c = await (p({z: 'one %%name'}, {name: 'x'}));
+    test.deepEqual(c, {z: 'one %%name'});
 
-    function runner() {
-        let c = waitFor(p({z: 'one %%name'}, {name: 'x'}));
-        test.deepEqual(c, {z: 'one %%name'});
+    c = await (p({z: 'one %%name'}, {name: 'x', getSystemVariable: (m) => 'time'}));
+    test.deepEqual(c, {z: 'one time'});
 
-        c = waitFor(p({z: 'one %%name'}, {name: 'x', getSystemVariable: (m) => 'time'}));
-        test.deepEqual(c, {z: 'one time'});
+    c = await (p({z: 'one %%name for %x'}, {x: 'me', getSystemVariable: (m) => 'time'}));
+    test.deepEqual(c, {z: 'one time for me'});
 
-        c = waitFor(p({z: 'one %%name for %x'}, {x: 'me', getSystemVariable: (m) => 'time'}));
-        test.deepEqual(c, {z: 'one time for me'});
+    c = await (p({z: 'one %%name for %x'}, {getVariable: (m) => Promise.resolve('her'), getSystemVariable: (m) => 'time'}));
+    test.deepEqual(c, {z: 'one time for her'});
 
-        c = waitFor(p({z: 'one %%name for %x'}, {getVariable: (m) => Promise.resolve('her'), getSystemVariable: (m) => 'time'}));
-        test.deepEqual(c, {z: 'one time for her'});
-
-        test.done();
-    }
-
-    return async(runner)();
+    test.done();
 };
 
 exports.string = function (test) {
@@ -724,8 +718,8 @@ exports.simpleIf2 = function (test) {
     });
 };
 
-exports.case1 = function (test) {
-    const template = {
+exports.case1 = async function (test) {
+    let template = {
         a: {
             '%switch': '"case" + b',
             case1: 'x',
@@ -733,12 +727,27 @@ exports.case1 = function (test) {
         }
     };
     const context = {a: '1', b: '2'};
-    p(template, context).then(function (v) {
-        test.deepEqual(v, {a: 'z'});
+    let v = await p(template, context);
+    test.deepEqual(v, {a: 'z'});
+    template = {
+        a: {
+            '%switch': {'%join': ['case', '%b']},
+            'case 1': 'x',
+            'case 2': 'z',
+        }
+    };
+    try {
+        v = await p(template, context);
+        test.ok(false);
+    } catch (e) {
+        test.ok(true); // to be explicit
+    } finally {
         test.done();
-    });
+    }
+
 };
-exports.eval1 = function (test) {
+
+exports.eval1 = async function (test) {
     const template = {
         value: [
             {'%eval': 'func(0)'},
@@ -763,10 +772,23 @@ exports.eval1 = function (test) {
     const output = {
         value: [1, 2, 2, 2, 5, 6, 7, 8, 9, 12],
     };
-    p(template, context).then(function (v) {
-        test.deepEqual(v, output);
-        test.done();
-    });
+    let v = await p(template, context);
+    test.deepEqual(v, output);
+
+    // note that the whole %eval block is being replace.
+    v = await p({'%eval': '(18+7)/5'});
+    test.deepEqual(v, 5);
+
+    // all objects used should be defined in the context, even the standard JS ones
+    v = await p({'%eval': '41+ Math.sin(Math.PI/2)'}, {'Math': Math});
+    test.deepEqual(v, 42);
+
+    // custom functions work as well
+    v = await p({'%eval': '41+ give(1)'}, {'give': (i) => i});
+    test.deepEqual(v, 42);
+
+
+    test.done();
 };
 
 exports.deepIf1 = function (test) {

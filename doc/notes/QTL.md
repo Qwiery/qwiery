@@ -49,3 +49,29 @@ results in
 
         'a b c'
         
+
+### Eval
+
+This will evaluate the content given. For example
+
+        {%eval: '(18+7)/5)'}
+        
+will be replaced by '5'. Note that the whole block is being replaced.
+The parser tries to resolve unknown objects and calls via the context. If you want to use `Math` for example you need to define it in the context. Similarly, custom functions work as well provided they are defined in the execution context.
+
+### Switch
+
+A switch-case block is interpreted as expected and replaces the whole switch-block. The following
+
+        {
+               a: {
+                   '%switch': '"case" + b',
+                   'case1': 'x',
+                   'case2': 'z',
+               }
+        }     
+with the context value 1 for `b` will result in
+
+        { a: 'x'}
+
+The switch-statement should be a string which can be evaluated, you cannot have a complex block here.                
