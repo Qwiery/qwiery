@@ -57,7 +57,15 @@ This will evaluate the content given. For example
         {%eval: '(18+7)/5)'}
         
 will be replaced by '5'. Note that the whole block is being replaced.
-The parser tries to resolve unknown objects and calls via the context. If you want to use `Math` for example you need to define it in the context. Similarly, custom functions work as well provided they are defined in the execution context.
+The parser tries to resolve unknown objects and calls via the context. 
+If you want to use `Math` for example you need to define it in the context. 
+Similarly, custom functions work as well provided they are defined in the execution context. These custom functions can be async, so fetching data from an external service is possible.
+
+The eval has also a shorthand notation:
+
+    {a: '%{12*9}'}
+    
+will be evaluated as well.    
 
 ### Switch
 
@@ -75,3 +83,19 @@ with the context value 1 for `b` will result in
         { a: 'x'}
 
 The switch-statement should be a string which can be evaluated, you cannot have a complex block here.                
+
+### If
+
+An if-then-else is interpreted as expected provided the conditions are strings which can be evaluated:
+
+        {
+            '%if': 'key1 > key2',
+            '%then': {
+                b: {
+                    '%if': 'key3 > key4',
+                    '%then': '%{ x }',
+                    '%else': '%{ y }',
+                },
+            },
+            '%else': {b: 'failed'},
+        }

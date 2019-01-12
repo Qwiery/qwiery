@@ -28,7 +28,7 @@
     "http": "node ./Apps/HTTP",
     "test": "nodeunit",
     "docs": "jsdoc -c ./jsdoc.json",
-    "cover": "istanbul cover nodeunit",
+    "cover": "nyc nodeunit",
     "load": "artillery run artillery.yml"
   },
   "description": "Generic cognitive agent architecture.",
@@ -76,6 +76,7 @@
     "gulp-rename": "^1.2.2",
     "minami": "^1.1.1",
     "nodeunit": "^0.11.0",
-    "through2": "^2.0.3"
+    "through2": "^2.0.3",
+    "nyc": "*"
   }
 }

@@ -384,7 +384,7 @@ exports.deepAccess = function (test) {
     });
 };
 
-exports.switchOne = function (test) {
+exports.switchOne = async function (test) {
     const template = {
         a: {
             '%switch': '"case" + a',
@@ -392,15 +392,14 @@ exports.switchOne = function (test) {
         }
     };
     const context = {a: '1'};
-    p(template, context).then(function (v) {
-        test.deepEqual(v, {a: 'a'});
-        test.done();
-    });
+    let v = await p(template, context);
+    test.deepEqual(v, {a: 'a'});
+    test.done();
 
 };
 
-exports.thenthen = function (test) {
-    const template = {
+exports.thenthen = async function (test) {
+    let template = {
         val: {
             '%if': 'key1 > key2',
             '%then': {
@@ -415,30 +414,24 @@ exports.thenthen = function (test) {
     };
 
     const context = {key1: 2, key2: 1, key3: 4, key4: 3, x: 'a', y: 'b'};
-    p(template, context).then(function (v) {
-        test.deepEqual(v, {val: {b: 'a'}});
-        test.done();
-    });
+    let v = await p(template, context);
+    test.deepEqual(v, {val: {b: 'a'}});
+
+
+    test.done();
 };
 
-exports.async = function (test) {
-    const that = this;
+exports.async = async function (test) {
+    const template = {
+        val: {
+            '%eval': 'go()'
+        },
+    };
 
-    function runner() {
-        const template = {
-            val: {
-                '%eval': 'go()'
-            },
-        };
-
-        const context = {go: () => Promise.resolve(10)};
-        let r = waitFor(p(template, context));
-        test.deepEqual(r, {val: 10});
-        // console.log(r);
-        test.done();
-    }
-
-    return async(runner)();
+    const context = {go: () => Promise.resolve(10)};
+    let r = await p(template, context);
+    test.deepEqual(r, {val: 10});
+    test.done();
 };
 
 exports.join1 = function (test) {
@@ -481,25 +474,22 @@ exports.join2 = function (test) {
     return async(runner)();
 };
 
-exports.join3 = function (test) {
-    const that = this;
+exports.join3 = async function (test) {
+    const template = {
+        m: {
+            '%join': [
+                'all', {'%eval': 'a.b[1]'}, 'well'
+            ]
+        }
+    };
+    let r = await p(template, {
+        a: {b: ['', 'is']}
+    });
+    test.deepEqual(r, {m: 'all is well'});
 
-    function runner() {
-        const template = {
-            m: {
-                '%join': [
-                    'all', {'%eval': 'a.b[1]'}, 'well'
-                ]
-            }
-        };
-        let r = waitFor(p(template, {
-            a: {b: ['', 'is']}
-        }));
-        test.deepEqual(r, {m: 'all is well'});
-        test.done();
-    }
-
-    return async(runner)();
+    r = await p({a: '%{2*9}'});
+    test.deepEqual(r, {a: 18});
+    test.done();
 };
 
 exports.join4 = function (test) {
