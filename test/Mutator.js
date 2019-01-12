@@ -1,7 +1,6 @@
 const Mutator = require('../lib/Services/QTL/mutator');
 const p = Mutator.mutate;
-const async = require('asyncawait/async');
-const waitFor = require('asyncawait/await');
+
 const _ = require('lodash');
 const utils = require('../lib/utils');
 const OracleService = require('../lib/Services/Oracle');
@@ -434,44 +433,32 @@ exports.async = async function (test) {
     test.done();
 };
 
-exports.join1 = function (test) {
-    const that = this;
-
-    function runner() {
-        const template = {
-            m: {
-                '%join': [
-                    'all', 'is', 'well'
-                ]
-            }
-        };
-        let r = waitFor(p(template));
-        test.deepEqual(r, {m: 'all is well'});
-        test.done();
-    }
-
-    return async(runner)();
+exports.join1 = async function (test) {
+    const template = {
+        m: {
+            '%join': [
+                'all', 'is', 'well'
+            ]
+        }
+    };
+    let r = await (p(template));
+    test.deepEqual(r, {m: 'all is well'});
+    test.done();
 };
 
-exports.join2 = function (test) {
-    const that = this;
-
-    function runner() {
-        const template = {
-            m: {
-                '%join': [
-                    'all', {'%eval': 'is()'}, 'well'
-                ]
-            }
-        };
-        let r = waitFor(p(template, {
-            is: () => Promise.resolve('is')
-        }));
-        test.deepEqual(r, {m: 'all is well'});
-        test.done();
-    }
-
-    return async(runner)();
+exports.join2 = async function (test) {
+    const template = {
+        m: {
+            '%join': [
+                'all', {'%eval': 'is()'}, 'well'
+            ]
+        }
+    };
+    let r = await (p(template, {
+        is: () => Promise.resolve('is')
+    }));
+    test.deepEqual(r, {m: 'all is well'});
+    test.done();
 };
 
 exports.join3 = async function (test) {
@@ -492,111 +479,86 @@ exports.join3 = async function (test) {
     test.done();
 };
 
-exports.join4 = function (test) {
-    const that = this;
-
-    function runner() {
-        const template = {
-            m: {
-                '%join': [
-                    'all',
-                    {
-                        '%if': 'a.c==10',
-                        '%then': 'is not',
-                        '%else': 'is'
-                    },
-                    'well'
-                ]
-            }
-        };
-        let r = waitFor(p(template, {
-            a: {
-                b: ['', 'is'],
-                c: 12
-            }
-        }));
-        test.deepEqual(r, {m: 'all is well'});
-        test.done();
-    }
-
-    return async(runner)();
+exports.join4 = async function (test) {
+    const template = {
+        m: {
+            '%join': [
+                'all',
+                {
+                    '%if': 'a.c==10',
+                    '%then': 'is not',
+                    '%else': 'is'
+                },
+                'well'
+            ]
+        }
+    };
+    let r = await (p(template, {
+        a: {
+            b: ['', 'is'],
+            c: 12
+        }
+    }));
+    test.deepEqual(r, {m: 'all is well'});
+    test.done();
 };
 
-exports.join5 = function (test) {
+exports.join5 = async function (test) {
+    let obj = {
+        'x': {
+            '%join': ['a', 'b', 'c']
+        }
+    };
+    let r = await (p(obj));
+    test.deepEqual(r, {x: 'a b c'});
 
-    const that = this;
+    obj = {
+        'x': {
+            '%join': ['a', {
+                '%join': ['2', '3']
+            }, 'c']
+        }
+    };
+    r = await (p(obj));
+    test.deepEqual(r, {x: 'a 2 3 c'});
 
-    function runner() {
-        let obj = {
-            'x': {
-                '%join': ['a', 'b', 'c']
-            }
-        };
-        let r = waitFor(p(obj));
-        test.deepEqual(r, {x: 'a b c'});
-
-        obj = {
-            'x': {
-                '%join': ['a', {
-                    '%join': ['2', '3']
-                }, 'c']
-            }
-        };
-        r = waitFor(p(obj));
-        test.deepEqual(r, {x: 'a 2 3 c'});
-
-        obj = {
-            'x': {
-                '%join': ['a', {'%join': ['-']}, 'c']
-            }
-        };
-        r = waitFor(p(obj));
-        test.deepEqual(r, {x: 'a - c'});
-        test.done();
-    }
-
-    return async(runner)();
+    obj = {
+        'x': {
+            '%join': ['a', {'%join': ['-']}, 'c']
+        }
+    };
+    r = await (p(obj));
+    test.deepEqual(r, {x: 'a - c'});
+    test.done();
 };
 
-exports.singularEval = function (test) {
-    function runner() {
-        let r = waitFor(p({'%eval': 'is()'}, {
-            is: () => Promise.resolve('is')
-        }));
-        test.equal(r, 'is');
-        test.done();
-    }
-
-    return async(runner)();
+exports.singularEval = async function (test) {
+    let r = await (p({'%eval': 'is()'}, {
+        is: () => Promise.resolve('is')
+    }));
+    test.equal(r, 'is');
+    test.done();
 };
 
-exports.singularIf = function (test) {
-    function runner() {
-        let r = waitFor(p({'%if': '5>3', '%then': 7}, {
-            is: () => Promise.resolve('is')
-        }));
-        test.equal(r, 7);
-        test.done();
-    }
-
-    return async(runner)();
+exports.singularIf = async function (test) {
+    let r = await (p({'%if': '5>3', '%then': 7}, {
+        is: () => Promise.resolve('is')
+    }));
+    test.equal(r, 7);
+    test.done();
 };
 
-exports.random = function (test) {
-    function runner() {
-        let r = waitFor(p({
-            '%if': '5<12',
-            '%then': {
-                '%rand': [
-                    1, 2, 3, 4, 5
-                ]
-            }
-        }));
-        test.ok(_.isNumber(r));
-        test.done();
-    }
-
-    return async(runner)();
+exports.random = async function (test) {
+    let r = await (p({
+        '%if': '5<12',
+        '%then': {
+            '%rand': [
+                1, 2, 3, 4, 5
+            ]
+        }
+    }));
+    test.ok(_.isNumber(r));
+    test.done();
 };
 
 exports.freeVars = function (test) {
@@ -974,7 +936,7 @@ exports.joinWithService = function (test) {
     });
 };
 
-exports.replaceServiceCalls = function (test) {
+exports.replaceServiceCalls = async function (test) {
     test.expect(5);
     const obj = {
         x: {
@@ -994,14 +956,13 @@ exports.replaceServiceCalls = function (test) {
         },
         z: 56
     };
-    p(obj).then(function (replaced) {
-        test.ok(replaced.x !== undefined);
-        test.ok(_.isNumber(parseInt(replaced.x)));
-        test.ok(replaced.y.z !== undefined);
-        test.ok(_.isNumber(parseInt(replaced.y.z)));
-        test.equal(replaced.z, 56);
-        test.done();
-    });
+    const replaced = await p(obj);
+    test.ok(replaced.x !== undefined);
+    test.ok(_.isNumber(parseInt(replaced.x)));
+    test.ok(replaced.y.z !== undefined);
+    test.ok(_.isNumber(parseInt(replaced.y.z)));
+    test.equal(replaced.z, 56);
+    test.done();
 
 };
 exports.workflow1 = function (test) {

@@ -99,3 +99,15 @@ An if-then-else is interpreted as expected provided the conditions are strings w
             },
             '%else': {b: 'failed'},
         }
+
+### Service
+
+A call to a REST service can be specified via a `url` and a path to extract a value:
+
+        {
+        '%service': {
+            URL: 'http://randomprofile.com/api/api.php?countries=GBR&format=json',//http://api.qwiery.com/data/randomNumbers/10",
+            Path: 'profile.age'
+        }
+        
+An additional `data` property (a JSON blob) can be added which gets posted with the request.
