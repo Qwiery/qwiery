@@ -1,6 +1,6 @@
-// import utils from "../lib/utils";
 const Language = require("../lib/Services/Language");
 const _ = require("lodash");
+
 exports.capture = function(test) {
     test.equal(Language.capture("username", "They call me John and I am 32 years old."), "John");
     test.done();

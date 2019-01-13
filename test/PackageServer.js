@@ -20,6 +20,13 @@ exports.setUp = function (callback) {
     callback();
 };
 
+exports.tearDown = function (callback) {
+    server.send('stop');
+    setTimeout(function () {
+        server.kill();
+        callback();
+    }, 500);
+};
 
 exports.repoLogic = function (test) {
     let rootDir = path.join(__dirname, '../PackageServer/Packages');
@@ -297,10 +304,3 @@ exports.loadBasic = function (test) {
 
 };
 
-exports.tearDown = function (callback) {
-    server.send('stop');
-    setTimeout(function () {
-        server.kill();
-        callback();
-    }, 500);
-};

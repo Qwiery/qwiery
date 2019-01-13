@@ -1,6 +1,5 @@
 const
     Qwiery = require("../lib"),
-    Parsers = require("../lib/Interpreters/Parsers"),
     _ = require("lodash"),
     utils = require("../lib/utils");
 const session = {
@@ -12,13 +11,11 @@ const session = {
         appId: "default"
     }
 };
-const async = require('asyncawait/async');
-const waitFor = require('asyncawait/await');
 
 const qwiery = new Qwiery();
 const parsers = qwiery.interpreters.parsers;
 
-exports.joins = function(test) {
+exports.joins = async function(test) {
 
     const stuff = [
         "Video", "YouTube", "ASD oiaTas", "I can", "while", ".com", "//www.", " ", "__", "?q=234123", "http://www.cnn.com", "$;", "361", "Light", "Watch"
@@ -60,17 +57,13 @@ exports.joins = function(test) {
     ];
     test.expect(2 * urls.length);
 
-    function runner() {
-        for(let i = 0; i < urls.length; i++) {
-            // surround it with some noise
-            session.Input.Raw = someStuff() + urls[i] + someStuff();
-            console.log(session.Input.Raw + "\n");
-            const found = waitFor(parsers.youtube(session));
-            test.ok(utils.isDefined(found));
-            test.equal(found.length, 2);
-        }
-        test.done();
+    for(let i = 0; i < urls.length; i++) {
+        // surround it with some noise
+        session.Input.Raw = someStuff() + urls[i] + someStuff();
+        console.log(session.Input.Raw + "\n");
+        const found = await (parsers.youtube(session));
+        test.ok(utils.isDefined(found));
+        test.equal(found.length, 2);
     }
-
-    return async(runner)();
+    test.done();
 };

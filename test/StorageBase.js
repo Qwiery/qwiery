@@ -2,8 +2,7 @@ const StorageBase = require("../lib/Framework/StorageBase");
 const ServiceBase = require("../lib/Framework/ServiceBase");
 const utils = require("../lib/utils");
 const _ = require("lodash");
-const async = require('asyncawait/async');
-const waitFor = require('asyncawait/await');
+
 /**
  * Pure memory storage implementation.
  */
@@ -87,31 +86,3 @@ exports.basicStorage = function(test) {
     test.equal(found.name, "Luddy");
     test.done();
 };
-
-// exports.testStorage = function(test) {
-//     const that = this;
-//
-//     function runner() {
-//         let st = new TestStorage();
-//         await(st.init({services: {}}));
-//         let blob = {
-//             id: utils.randomId(),
-//             name: "Eggy"
-//         };
-//         test.throws(function() {
-//             st.insert(blob)
-//         }, Error);
-//         st.insert(blob, "Stuff");
-//         let found = await(st.findOne({id: blob.id}, "Stuff"));
-//         test.ok(utils.isDefined(found));
-//         found.name = "Luddy";
-//         await(st.update(found, "Stuff"));
-//         found = await(st.findOne({id: blob.id}, "Stuff"));
-//         test.equal(found.name, "Luddy");
-//         await(st.save());
-//         test.done();
-//     }
-//
-//     return async(runner)();
-//
-// };

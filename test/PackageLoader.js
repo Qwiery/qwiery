@@ -1,4 +1,4 @@
-const Loader = require("../lib/Services/Loader");
+const Loader = require("../lib/Services/PackageLoader");
 const loader = new Loader();
 const _ = require("lodash");
 const path = require("path");
@@ -11,15 +11,13 @@ loader.services = {
     }
 };
 
-exports.noUrl = function(test) {
+exports.noUrl = async function (test) {
     let logger = [];
-    loader.getPackage("something", null, null, logger).then(function(r) {
-        test.ok(_.isNull(r.path));
-        test.equal(logger.length, 1);
-        test.ok(logger[0].indexOf("No rep") >= 0);
-        test.done();
-
-    });
+    const r = await loader.getPackage("something", null, null, logger);
+    test.ok(_.isNull(r.path));
+    test.equal(logger.length, 1);
+    test.ok(logger[0].indexOf("No rep") >= 0);
+    test.done();
 };
 
 exports.noConnection = function(test) {

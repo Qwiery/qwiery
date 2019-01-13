@@ -1,8 +1,7 @@
 const
     _ = require("lodash");
 const
-    Entities = require("../lib/Understanding/Entities"),
-    Event = Entities.Appointment;
+    Entities = require("../lib/Understanding/Entities");
 exports.Appointment = function(test) {
 
     let e = Entities.parse({
@@ -34,13 +33,3 @@ exports.Appointment = function(test) {
     test.equal(e.Id, "S");
     test.done();
 };
-
-// exports.tryMakingSense = function(test) {
-//     const a = Event.tryMakinodeungSense("Tomorrow to dentist between 9AM and 10AM.");
-//     test.ok(a !== null);
-//     test.equal(new Date(a.From).getHours(), 9);
-//     test.equal(new Date(a.To).getHours(), 10);
-//     test.equal(a.Title, "dentist");
-//     test.equal(a.AllDay, false);
-//     test.done();
-// };

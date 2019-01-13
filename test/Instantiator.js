@@ -1,12 +1,29 @@
 const path = require("path");
 const utils = require("../lib/utils");
-const ServiceBase = require("../lib/Framework/ServiceBase");
-const CommandBase = require("../lib/Framework/CommandBase");
-const fs = require('fs');
 const _ = require('lodash');
-const assert = require('assert');
 const Instantiator = require("../lib/Instantiator");
 const Configurator = require("../lib/Configurator");
+
+
+exports.inlineService = function(test) {
+
+    // sample inline plugin
+    let q = new Qwiery({
+        plugins: [
+            {
+                type: "service",
+                name: "MyService",
+                method: function(x) {
+                    return x + 1;
+                }
+            }
+        ]
+    });
+    test.ok(utils.isDefined(q.services.myservice));
+    test.equal(q.services.myservice.method(197), 198);
+
+    test.done();
+};
 
 exports.inliner1 = function(test) {
     let settings = {
