@@ -1125,12 +1125,15 @@ exports.forecast = async function (test) {
     console.log('Forecast answer: ' + JSON.stringify(answers[1].Output.Answer[1]));
     test.ok(parseInt(JSON.stringify(answers[1].Output.Answer[1])) > 0);
     console.log(answers[1].Output.Answer[0]);
-    server.send('stop');
-    setTimeout(function () {
-        server.kill();
-        test.done();
+    try {
+        // if the server failed to start trying to stop it will raise an error
+        server.send('stop');
+        setTimeout(function () {
+            server.kill();
+            test.done();
 
-    }, 500);
+        }, 500);
+    }catch(e){}
 
 };
 

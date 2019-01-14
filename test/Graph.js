@@ -55,9 +55,13 @@ exports.getCurrentWorkspace = async function (test) {
     // when running multiple tests the space can be altered, so set it explicitly here
     // No need to specify the full name, just the start of 'default workspace' is enough.
     await (graph.setCurrentWorkspace('def', ctx));
-    test.throws(function () {
-        await(graph.getCurrentWorkspace());
-    }, Error, 'Should throw an error.');
+    try {
+        // should throw an error; missing id
+        await (graph.getCurrentWorkspace());
+        test.ok(false);
+    } catch (e) {
+        test.ok(true); // just to be explicit
+    }
     const space = await (graph.getCurrentWorkspace(ctx));
     test.ok(utils.isDefined(space), 'The space was found.');
     test.ok(space.Name === 'Default workspace', 'The space name is OK.');
@@ -394,7 +398,7 @@ exports.makePublic = async function (test) {
 };
 
 exports.sharing = async function (test) {
-    test.expect(11);
+    test.expect(12);
 
     await (resetSharon());
     const userId = utils.randomId();
@@ -414,7 +418,8 @@ exports.sharing = async function (test) {
         await (graph.connect('Ludwig', newNode.Id, 'external', ctx));
         test.ok(false, 'Should not be allowed');
     } catch (e) {
-        console.log(e);
+        // console.log(e);
+        test.ok(true);
     }
 
     // upon searching Sharon cannot see the entity at this point
@@ -514,6 +519,7 @@ exports.deleteSpace = async function (test) {
 };
 
 exports.getEntityCount = async function (test) {
+    const userId = utils.randomId();
     await (graph.addUser(userId, {userId: 'Sharon'}));
     test.ok(graph.userExists(userId));
     const ctx = {

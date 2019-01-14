@@ -36,18 +36,23 @@ const server = http.createServer(app);
  *      child.send("stop");
  */
 process.on('message', function (m, r) {
-    switch (m.toLowerCase()) {
-        case 'start':
-            server.listen(port);
-            console.log(`Faker API listening on port ${port}.`);
-            break;
-        case 'stop':
-            server.close();
-            console.log(`Faker API was closed on port ${port}.`);
-            break;
-        default:
-            console.error(`Faker API did not understand the command '${m.toLowerCase()}'.`);
+    try {
+        switch (m.toLowerCase()) {
+            case 'start':
+                server.listen(port);
+                console.log(`Faker API listening on port ${port}.`);
+                break;
+            case 'stop':
+                server.close();
+                console.log(`Faker API was closed on port ${port}.`);
+                break;
+            default:
+                console.error(`Faker API did not understand the command '${m.toLowerCase()}'.`);
+        }
+    } catch (e) {
+        console.error(e);
     }
+
 });
 
 /**

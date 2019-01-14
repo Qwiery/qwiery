@@ -69,6 +69,7 @@ exports.replaceGetters = async function (test) {
     const value = utils.randomId();
 
     await personalization.addPersonalization(key, value, ctx);
+    await utils.sleep(500);
     r = await p(`This %${key.toLowerCase()} is now replaced.`, context);
     test.equal(r, 'This ' + value + ' is now replaced.');
 

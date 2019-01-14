@@ -26,11 +26,11 @@ exports.keywords = function(test) {
     });
 };
 
-exports.summarize = function(test) {
-    qwiery.ask("summarize>http://www.qwiery.com", {return: "text"}).then(function(answer) {
-        test.ok(answer.indexOf("Qwiery Template Language") >= 0);
-        test.done();
-    });
+exports.summarize = async function (test) {
+    const answer = await qwiery.ask("summarize>http://www.qwiery.com", {return: "text"});
+    console.log(answer);
+    test.ok(answer.indexOf("It's written in JavaScript") >= 0);
+    test.done();
 };
 
 exports.lookup = function(test) {

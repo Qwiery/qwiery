@@ -73,7 +73,7 @@ exports.topicHistory = async function (test) {
     await (p.addTopicHistory(ctx, topicName));
     all = await (p.getTopicHistory(ctx));
     let count = all.length;
-    [topicName, topicName, topicName].forEach(function (n) {
+    [topicName, topicName, topicName].forEach(async n => {
         await(p.addTopicHistory(ctx, n));
     });
     all = await (p.getTopicHistory(ctx));

@@ -2,28 +2,7 @@ const Qwiery = require('../lib'),
     utils = require('../lib/utils'),
     path = require('path'),
     _ = require('lodash');
-let server;
-exports.api = async function (test) {
-    server = require('child_process').fork(path.join(__dirname, '../Faker'), {detached: true});
-    server.send('start');
-    setTimeout(function () {
-        utils.getWebData('http://localhost:9001')
-            .catch(e => console.log(e))
-            .then(function (d) {
-                test.equal(d.headers['x-info'], 'Faker API');
-                console.log('Body: ' + d.body);
-                test.done();
-            });
-    }, 500);
-};
 
-exports.tearDown = function (callback) {
-    server.send('stop');
-    setTimeout(function () {
-        server.kill();
-        callback();
-    }, 500);
-};
 //
 // exports.aha = function(test) {
 //     const qwiery = new Qwiery(
