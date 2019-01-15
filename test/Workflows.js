@@ -444,7 +444,7 @@ exports.workflowAnswer = async function (test) {
     test.done();
 };
 
-exports.stateBasics = function (test) {
+exports.stateBasics = async function (test) {
     const state = new WorkflowState();
     test.equal(state.isActive, false);
 
@@ -456,9 +456,9 @@ exports.stateBasics = function (test) {
         test.equal(s, state);
         wasRaised = true;
     };
-    state.activate(false);
+    await state.activate(false);
     test.equal(wasRaised, false);
-    state.activate(true);
+    await state.activate(true);
     test.equal(wasRaised, true);
 
     // deactivate
@@ -469,7 +469,7 @@ exports.stateBasics = function (test) {
         wasRaised = true;
     };
     state.deactivateMessage = utils.randomId();
-    state.deactivate();
+    await state.deactivate();
     test.equal(wasRaised, true);
     test.equal(state.isActive, false);
 
@@ -483,11 +483,12 @@ exports.stateBasics = function (test) {
         test.equal(inp, input);
         wasRaised = true;
     };
-    test.throws(function () {
-            state.execute(input);
-        },
-        'Should throw an error because the state is not active.'
-    );
+    try {
+        await state.execute(input);
+        test.ok(false);
+    } catch (e) {
+        test.ok(true);
+    }
     test.equal(wasRaised, false);
     state.activate();
     wasRaised = false;
@@ -1133,7 +1134,8 @@ exports.forecast = async function (test) {
             test.done();
 
         }, 500);
-    }catch(e){}
+    } catch (e) {
+    }
 
 };
 

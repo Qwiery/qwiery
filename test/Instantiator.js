@@ -3,7 +3,7 @@ const utils = require("../lib/utils");
 const _ = require('lodash');
 const Instantiator = require("../lib/Instantiator");
 const Configurator = require("../lib/Configurator");
-
+Qwiery = require('../lib');
 
 exports.inlineService = function(test) {
 

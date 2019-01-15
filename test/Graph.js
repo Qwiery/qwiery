@@ -344,7 +344,8 @@ exports.getTriplesByTitle = async function (test) {
     test.ok(utils.isDefined(link) && link.Id === belongsId);
 
     let links = await (graph.getLinksBetween('T1', 'T3', ctx));
-    test.ok(utils.isDefined(links) && links.length === 2);
+    test.ok(utils.isDefined(links));
+    test.equal(links.length, 2);
 
 
     const catTriples = await (graph.getTriplesByTitle(A, undefined, ctx));
@@ -360,7 +361,8 @@ exports.getTriplesByTitle = async function (test) {
     test.ok(connected);
     await (graph.disconnect('T1', 'T3', 'belongs', ctx));
     links = await (graph.getLinksBetween('T1', 'T3', ctx));
-    test.ok(utils.isDefined(links) && links.length === 1);
+    test.ok(utils.isDefined(links));
+    test.equal(links.length, 1);
     //remove everything
     await (graph.removeLinksWithId('T3', ctx));
 

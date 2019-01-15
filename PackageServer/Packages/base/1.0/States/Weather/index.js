@@ -1,18 +1,9 @@
 const
-    // WorkflowState = require("/Users/Swa/Desktop/Qwiery/lib/Services/Workflows/WorkflowState");
-    // utils = require("/Users/Swa/Desktop/Qwiery/lib/utils");
-
     Qwiery = require("qwiery"),
     WorkflowState = Qwiery.WorkflowState,
     utils = Qwiery.utils,
-    path = require("path"),
     _ = require("lodash");
 
-// _ = require('lodash'),
-// utils = require("../../../../utils"),
-// constants = require("../../../../constants"),
-// async = require('asyncawait/async'),
-// waitFor = require('asyncawait/await');
 class WeatherState extends WorkflowState {
     constructor(options) {
         super(options);

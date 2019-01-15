@@ -61,15 +61,12 @@ const qwiery = new Qwiery({
     }
 });
 const services = qwiery.services,
-    async = require('asyncawait/async'),
-    await = require('asyncawait/await'),
     graphdb = services.graph,
     personality = services.personality,
     personalization = services.personalization,
     userTopics = services.topics,
     utils = require("../lib/utils"),
     constants = require("../lib/constants"),
-    moment = require('moment'),
     ctx = {userId: "Sharon"},
     _ = require('lodash'),
     helper = require("./TestUtils");
