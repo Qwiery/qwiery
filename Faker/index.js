@@ -5,11 +5,67 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const app = express();
 const faker = require('faker');
+const path = require('path');
+const fs = require('fs-extra');
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
+
+
+//region Swagger
+const swaggerJSDoc = require('swagger-jsdoc');
+const options = {
+
+    swaggerDefinition: {
+        info: {
+            title: 'Faker REST API',
+            version: 1.0,
+            description: 'Intelligence as a service',
+        },
+
+        basePath: '/', // Base path (optional)
+    },
+
+    apis: [path.join(__dirname, './index.js')],
+};
+
+// Initialize swagger-jsdoc -> returns validated swagger spec in json format
+const swaggerSpec = swaggerJSDoc(options);
+app.get('/api-docs.json', function (req, res) {
+    res.setHeader('Content-Type', 'application/json');
+    res.send(swaggerSpec);
+});
+
+app.get('/swagger.json', function (req, res) {
+    res.setHeader('Content-Type', 'application/json');
+    res.send(fs.readJsonSync(path.join(__dirname, 'swagger.json')));
+});
+//endregion
+
+/**
+ * @swagger
+ * /weather/{location}:
+ *   get:
+ *     tags:
+ *          - graph
+ *     description: Fetches the entity with the given id from the user's graph.
+ *     parameters:
+ *           - name: location
+ *             in: path
+ *             description: the location to query
+ *             required: true
+ *             type: string
+ *     produces:
+ *       - application/json
+ *     responses:
+ *       200:
+ *         description: Successful response
+ */
 app.get('/weather/:location', function (req, res) {
     const location = req.params.location;
+    if (_.isNil(location)) {
+        throw new Error('No location specified.');
+    }
     const forecast = {
         location: location,
         temperature: _.sample(_.range(1, 30)),
@@ -18,9 +74,32 @@ app.get('/weather/:location', function (req, res) {
         pressure: _.sample(_.range(1, 300)),
         wind: _.sample(_.range(1, 300))
     };
-    console.log('Fake weather for' + location + ': ' + JSON.stringify(forecast));
     res.json(forecast);
 });
+
+/**
+ * @swagger
+ * /people/address:
+ *   get:
+ *     tags:
+ *          - graph
+ *     description: Fetches a random address.
+ *     produces:
+ *       - application/json
+ *     responses:
+ *       200:
+ *         description: Successful response
+ */
+app.get('/people/address', function (req, res) {
+    const address = {
+        addressLine: faker.address.streetAddress(),
+        zip: faker.address.zipCode(),
+        city: faker.address.city(),
+        country: faker.address.country()
+    };
+    res.json(address);
+});
+
 app.get('*', function (req, res) {
     res.set('X-info', 'Faker API');
     res.status(200).send('Qwiery Faker API');

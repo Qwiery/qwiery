@@ -1,6 +1,6 @@
 {
   "name": "qwiery",
-  "version": "1.6.4",
+  "version": "1.6.5",
   "_versionDate": "January 14, 2019",
   "_serviceUrl": "http://api.qwiery.com",
   "main": "lib/index.js",
@@ -27,6 +27,7 @@
     "repo": "node ./Apps/REPO",
     "faker": "node ./Apps/FAKER",
     "http": "node ./Apps/HTTP",
+    "rest": "node ./Apps/REST",
     "test": "nodeunit",
     "docs": "jsdoc -c ./jsdoc.json",
     "cover": "nyc nodeunit",
