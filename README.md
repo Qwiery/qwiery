@@ -67,3 +67,4 @@ and it will create a comprehensive site of both the API and the notes.
 The configuration of JSDOC sits in the `jsdoc.json` file in the root of the solution.
 
 The template to render the site is [the clean Minami](https://github.com/nijikokun/minami) but you can find lots of alternatives. The [jsdoc documentation](http://usejsdoc.org/about-configuring-default-template.html) explains in details how to configure things.         
+

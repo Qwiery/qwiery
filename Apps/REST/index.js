@@ -1,6 +1,6 @@
 const path = require('path'),
     https = require('https'),
-    cors = require('cors'),
+
     fs = require('fs-extra'),
     _ = require("lodash"),
     Qwiery = require("../../lib")    ;
@@ -11,20 +11,21 @@ process.on('uncaughtException', function(err) {
 });
 
 const express = require('express'),
+    cors = require('cors'),
     bodyParser = require('body-parser');
 
 
 const app = express();
 
+
 app.use(bodyParser.json());       // to support JSON-encoded bodies
 app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
     extended: true
 }));
-app.use(cors());
 let PORT;
 let HOST;
-//app.use(cors({"credentials": true, "origin": ['*', 'http://localhost:4787', 'http://localhost:4785', 'http://localhost:63342']}));
-
+// app.use(cors({"credentials": true, "origin": ['http://localhost:3000', 'http://localhost:4787', 'http://localhost:4785', 'http://localhost:63342']}));
+app.use(cors({credentials: true, origin: 'http://localhost:3000'}));
 if(false) {
     // In case you want SSL, this is the kinda code you'll need.
     // See here (among other) for more info https://github.com/andrewconnell/generator-nodehttps/blob/master/docs/setup-https.md

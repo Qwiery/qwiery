@@ -444,109 +444,6 @@ exports.workflowAnswer = async function (test) {
     test.done();
 };
 
-exports.stateBasics = async function (test) {
-    const state = new WorkflowState();
-    test.equal(state.isActive, false);
-
-    // activation
-    state.enterMessage = utils.randomId();
-    let wasRaised = false;
-    state.onActivate = function (msg, s) {
-        test.equal(msg, state.enterMessage);
-        test.equal(s, state);
-        wasRaised = true;
-    };
-    await state.activate(false);
-    test.equal(wasRaised, false);
-    await state.activate(true);
-    test.equal(wasRaised, true);
-
-    // deactivate
-    wasRaised = false;
-    state.onDeactivate = function (msg, s) {
-        test.equal(msg, state.deactivateMessage);
-        test.equal(s, state);
-        wasRaised = true;
-    };
-    state.deactivateMessage = utils.randomId();
-    await state.deactivate();
-    test.equal(wasRaised, true);
-    test.equal(state.isActive, false);
-
-    // execute
-    wasRaised = false;
-    state.executeMessage = utils.randomId();
-    const input = utils.randomId();
-    state.onExecute = function (msg, inp, s) {
-        test.equal(msg, state.executeMessage);
-        test.equal(s, state);
-        test.equal(inp, input);
-        wasRaised = true;
-    };
-    try {
-        await state.execute(input);
-        test.ok(false);
-    } catch (e) {
-        test.ok(true);
-    }
-    test.equal(wasRaised, false);
-    state.activate();
-    wasRaised = false;
-    state.execute(input);
-    test.equal(wasRaised, true);
-
-    // accept
-    wasRaised = false;
-    state.acceptMessage = utils.randomId();
-    const transitionValue = utils.randomId();
-    state.onAccept = function (msg, v, s) {
-        test.equal(msg, state.acceptMessage);
-        test.equal(s, state);
-        test.equal(v, transitionValue);
-        wasRaised = true;
-    };
-    state.accept(transitionValue);
-    test.equal(wasRaised, true);
-
-    // reject
-    wasRaised = false;
-    state.rejectMessage = utils.randomId();
-    const reason = utils.randomId();
-    state.onReject = function (msg, r, s) {
-        test.equal(msg, r);
-        test.equal(s, state);
-        test.equal(r, reason);
-        wasRaised = true;
-    };
-    // with a reason the msg is the given reason
-    state.reject(reason);
-
-    state.onReject = function (msg, r, s) {
-        test.equal(msg, state.rejectMessage);
-    };
-    // without a reason the msg is the rejectMessage
-    state.reject();
-
-    test.equal(wasRaised, true);
-
-
-    test.done();
-};
-
-exports.setVariables = function (test) {
-    const wf = {};
-    const state = new WorkflowState({
-        name: 'ttf',
-        workflow: wf
-    });
-    const value = utils.randomId();
-    state.setVariable(value);
-    test.equal(wf.variables.ttf, value);
-    state.setVariable(value, 'kopp');
-    test.equal(wf.variables.kopp, value);
-
-    test.done();
-};
 
 exports.toJson = function (test) {
     const state = new WorkflowState({
@@ -860,17 +757,25 @@ exports.upsertLibraryItem = async function (test) {
     test.done();
 };
 
+/**
+ * This simulates a series of inputs in a flow.
+ */
 exports.simulate = async function (test) {
-    const flow = getFlow('GuessTheNumber', true);
+
+    const flowDefinition = getFlow('GuessTheNumber', true);
+    // the instantiator is needed for storage and whatnot
     let instantiator = await (testUtils.getInstantiator());
-    let p = new Workflows();
-    await (p.init(instantiator));
-    p.run(flow, ['let\'s play', 'uh', '5', 15, 44, 66, 'quit']).then(function (spy) {
-        // console.log(spy.digest);
-        test.equal(spy.stateSequence.length, 1);
-        test.equal(spy.hasQuit, true);
-        test.done();
-    });
+    let wf = new Workflows();
+    await (wf.init(instantiator));
+    const spy = await wf.run(flowDefinition, ['let\'s play', 'uh', '5', 15, 44, 66, 'quit']);
+
+    // the number to guess is 123, so only one state is visited altogether
+    test.equal(spy.stateSequence.length, 1);
+
+    // the last quit means the flow was exited
+    test.equal(spy.hasQuit, true);
+
+    test.done();
 };
 
 exports.connectionstringSimple = function (test) {
@@ -1042,6 +947,7 @@ exports.dynamicLogic = function (test) {
 
 exports.forecast = async function (test) {
     const server = require('child_process').fork(path.join(__dirname, '../Faker'), {detached: true});
+    await utils.sleep();
     server.send('start');
     await utils.sleep();
     const settings = {

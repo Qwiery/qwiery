@@ -1,6 +1,8 @@
 const Qwiery = require('../lib'),
     utils = require('../lib/utils'),
     path = require('path'),
+    WorkflowStateOptions = require('../lib/Services/Workflows/WorkflowStateOptions'),
+    WorkflowState = require('../lib/Services/Workflows/WorkflowState'),
     _ = require('lodash');
 
 //
