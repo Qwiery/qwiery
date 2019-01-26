@@ -182,6 +182,13 @@ function getFlow(name, onlyDefinition = false) {
     }
 }
 
+exports.basicWorkflow = async function (test) {
+    const wf = new Workflow();
+    test.ok(!_.isNil(wf));
+    test.ok(!_.isNil(wf.id));
+
+    test.done();
+};
 
 exports.ticket2 = async function (test) {
     const settings = {
